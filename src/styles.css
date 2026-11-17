@@ -1,0 +1,558 @@
+:root {
+  --savro-red: #E30613;
+  --savro-red-glow: rgba(227, 6, 19, 0.35);
+  --savro-black: #040406;
+  --savro-card: #111115;
+  --savro-border: rgba(255, 255, 255, 0.16);
+  --savro-silver: #C7C7CC;
+  --savro-white: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #020203;
+  color: var(--savro-white);
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============================================================================
+   PUBLIC WEB INVITATION PAGE (Full-Screen Luxury Card Experience)
+   ============================================================================ */
+.invitation-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 0.85rem;
+  background: radial-gradient(circle at 50% 15%, #1d0407 0%, #050507 60%, #000000 100%);
+}
+
+.invitation-card {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: min(860px, 94vh);
+  background-color: #000000;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(5, 5, 5, 0.94) 0%, rgba(5, 5, 5, 0.85) 58%, rgba(0, 0, 0, 0.42) 100%),
+    radial-gradient(circle at 50% 20%, rgba(227, 6, 19, 0.22) 0%, rgba(227, 6, 19, 0) 55%),
+    url('/pattern_page_6.png');
+  background-size: 100% 100%, 100% 100%, 540px auto;
+  background-position: center, center, center;
+  border-radius: 18px;
+  padding: 2.75rem 1.85rem 2.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(227, 6, 19, 0.14);
+  overflow: hidden;
+  animation: cardFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Architectural Outer & Inner Borders */
+.invitation-card::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+.invitation-card::after {
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border: 1.5px solid rgba(227, 6, 19, 0.78);
+  pointer-events: none;
+}
+
+/* Red Corner L-Brackets */
+.corner-bracket {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--savro-red);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+}
+.corner-bracket.tl { top: 15px; left: 15px; border-width: 3px 0 0 3px; }
+.corner-bracket.tr { top: 15px; right: 15px; border-width: 3px 3px 0 0; }
+.corner-bracket.bl { bottom: 15px; left: 15px; border-width: 0 0 3px 3px; }
+.corner-bracket.br { bottom: 15px; right: 15px; border-width: 0 3px 3px 0; }
+
+.card-inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 0.5rem 0.25rem;
+}
+
+.inv-overline {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--savro-red);
+}
+
+.inv-logo {
+  width: clamp(145px, 42vw, 185px);
+  height: auto;
+  margin-block: 0.15rem 0.25rem;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.7));
+}
+
+.inv-lead {
+  font-size: clamp(0.68rem, 2.3vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--savro-silver);
+}
+
+.inv-title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  gap: 0.2rem;
+}
+
+.inv-title-serif {
+  font-family: 'Cormorant Garamond', Didot, 'Bodoni MT', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(2.65rem, 9.5vw, 3.85rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--savro-white);
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.8);
+}
+
+.inv-title-serif.vip-size {
+  font-size: clamp(2.05rem, 7.2vw, 2.85rem);
+  letter-spacing: 0.1em;
+}
+
+.inv-title-sans {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 7.2vw, 2.85rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--savro-red);
+}
+
+/* Diamond Divider */
+.diamond-divider {
+  width: 88%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-block: 0.15rem;
+}
+
+.diamond-divider::before,
+.diamond-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.diamond-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--savro-red);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* Guest Name Block inside VIP Invitation */
+.guest-honor-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding-inline: 0.5rem;
+  max-width: 100%;
+}
+
+.guest-honor-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--savro-red);
+}
+
+.guest-honor-name {
+  font-family: 'Cormorant Garamond', Didot, 'Bodoni MT', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(1.65rem, 6.2vw, 2.35rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--savro-white);
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+/* Specialties Ribbon */
+.inv-specialties {
+  font-size: clamp(0.68rem, 2.4vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F5F5F7;
+  line-height: 1.5;
+}
+
+/* Date & Time Box */
+.inv-date-box {
+  width: 92%;
+  background: rgba(20, 20, 24, 0.92);
+  border: 1.5px solid var(--savro-red);
+  border-radius: 14px;
+  padding: 1.15rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.inv-day-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--savro-red);
+}
+
+.inv-date-text {
+  font-size: clamp(1.15rem, 4.6vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--savro-white);
+}
+
+.inv-time-pill {
+  margin-block-start: 0.2rem;
+  background: var(--savro-red);
+  color: var(--savro-white);
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.48rem 1.5rem;
+  border-radius: 999px;
+}
+
+/* Location Section */
+.inv-location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  margin-block-start: 0.2rem;
+}
+
+.inv-loc-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--savro-red);
+}
+
+.inv-venue {
+  font-family: 'Cormorant Garamond', Didot, Georgia, serif;
+  font-size: clamp(1.35rem, 5.2vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--savro-white);
+}
+
+.inv-address {
+  font-size: clamp(0.78rem, 2.8vw, 0.92rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--savro-silver);
+}
+
+.inv-map-link {
+  margin-block-start: 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--savro-white);
+  text-decoration: none;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.inv-map-link:hover {
+  background: rgba(227, 6, 19, 0.18);
+  border-color: var(--savro-red);
+}
+
+.inv-footer {
+  font-size: 0.64rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(199, 199, 204, 0.8);
+  margin-block-start: 0.5rem;
+}
+
+/* ============================================================================
+   PRIVATE STORE MANAGER STUDIO (/admin)
+   ============================================================================ */
+.admin-shell {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .admin-shell {
+    grid-template-columns: 440px 1fr;
+    align-items: center;
+  }
+}
+
+.admin-panel {
+  background: rgba(17, 17, 21, 0.96);
+  border: 1px solid rgba(227, 6, 19, 0.45);
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.admin-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--savro-red);
+}
+
+.admin-title {
+  font-family: 'Cormorant Garamond', Didot, Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--savro-white);
+  line-height: 1.15;
+}
+
+.admin-subtitle {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--savro-silver);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-block-end: 1.1rem;
+}
+
+label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--savro-white);
+  padding: 8px 0;
+  margin: -8px 0;
+}
+
+input[type="text"] {
+  width: 100%;
+  font: inherit;
+  font-size: max(1rem, 1em);
+  padding: 0.85rem 1rem;
+  min-height: 48px;
+  border-radius: 12px;
+  border: 1.5px solid #767676;
+  background: #08080B;
+  color: var(--savro-white);
+}
+
+@media (pointer: coarse) {
+  input[type="text"],
+  .btn-action {
+    min-height: 52px;
+  }
+}
+
+input[type="text"]:focus-visible,
+.btn-action:focus-visible,
+.inv-map-link:focus-visible {
+  outline: 3px solid var(--savro-red);
+  outline-offset: 2px;
+}
+
+input[type="text"]:user-invalid {
+  border-color: #ff5252;
+}
+
+.field-hint {
+  font-size: 0.78rem;
+  color: var(--savro-silver);
+  line-height: 1.4;
+}
+
+.field-error {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ff6b6b;
+  min-height: 1.1em;
+}
+
+.action-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-action {
+  appearance: none;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.85rem 1.15rem;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.btn-action.primary {
+  background: var(--savro-red);
+  color: var(--savro-white);
+  border: none;
+  box-shadow: 0 8px 24px var(--savro-red-glow);
+}
+
+.btn-action.primary:hover {
+  background: #ff1624;
+  transform: translateY(-1px);
+}
+
+.btn-action.secondary {
+  background: #1B1B22;
+  color: var(--savro-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+}
+
+.btn-action.secondary:hover {
+  background: #25252F;
+  border-color: var(--savro-white);
+}
+
+.generated-link-box {
+  background: #09090C;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.generated-link-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--savro-silver);
+}
+
+.generated-link-url {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  color: #60a5fa;
+  word-break: break-all;
+}
+
+.status-toast {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #4ade80;
+  min-height: 1.3em;
+  text-align: center;
+}
+
+.divider-line {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin-block: 0.35rem;
+}
+
+.hidden-canvas {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}

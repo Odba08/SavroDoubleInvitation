@@ -1,5 +1,7 @@
 .DS_Store
 Thumbs*.db
+node_modules/
+dist/
 brand_assets/*.eps
 brand_assets/*.ai
 brand_assets/*.pdf

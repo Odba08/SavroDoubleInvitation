@@ -1,3 +1,4 @@
 brand_assets/
-*.png
-
+/*.png
+node_modules/
+dist/

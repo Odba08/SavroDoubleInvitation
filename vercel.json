@@ -1,13 +1,31 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/b", "destination": "/index.html" },
-    { "source": "/wednesday", "destination": "/index.html" },
-    { "source": "/opening", "destination": "/index.html" },
-    { "source": "/vip", "destination": "/index.html" },
-    { "source": "/saturday", "destination": "/index.html" },
-    { "source": "/grand-opening", "destination": "/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/invite/:guest*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(WhatsApp|facebookexternalhit|Facebot|Twitterbot|TelegramBot|Slackbot|Discordbot).*"
+        }
+      ],
+      "destination": "/api/preview?type=vip&guest=:guest*"
+    },
+    {
+      "source": "/(b|18|opening)?",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(WhatsApp|facebookexternalhit|Facebot|Twitterbot|TelegramBot|Slackbot|Discordbot).*"
+        }
+      ],
+      "destination": "/api/preview?type=opening"
+    },
+    {
+      "source": "/((?!api/|assets/|og-|pattern|savro_).*)",
+      "destination": "/index.html"
+    }
   ]
 }
-
