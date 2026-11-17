@@ -50,3 +50,4 @@ export default function handler(req, res) {
 <body></body>
 </html>`);
 }
+

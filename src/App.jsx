@@ -546,11 +546,11 @@ export default function App() {
     /^\/(admin|encargado|manager|panel)\b/i.test(path) ||
     hash.toLowerCase().includes('admin') ||
     params.has('admin');
-  const inviteMatch = path.match(/^\/(?:invite|vip|i)\/(.+)$/i);
+  const inviteMatch = path.match(/^\/(?:invite|vip|i|21|saturday)(?:\/(.*))?$/i);
   const queryGuest = params.get('guest') || params.get('name');
   const isPersonalInvite = !isAdminRoute && Boolean(inviteMatch || queryGuest);
 
-  const rawGuest = inviteMatch ? inviteMatch[1] : queryGuest;
+  const rawGuest = (inviteMatch && inviteMatch[1]) ? inviteMatch[1] : queryGuest;
   const decodedGuest = decodeURIComponent(rawGuest || '')
     .replace(/[-_]+/g, ' ')
     .trim();

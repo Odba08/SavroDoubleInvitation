@@ -1,34 +1,35 @@
 {
   "rewrites": [
     {
-      "source": "/invite/:guest*",
-      "has": [
-        {
-          "type": "header",
-          "key": "user-agent",
-          "value": ".*(WhatsApp|facebookexternalhit|Facebot|Twitterbot|TelegramBot|Slackbot|Discordbot).*"
-        }
-      ],
-      "destination": "/api/preview?type=vip&guest=:guest*"
+      "source": "/admin",
+      "destination": "/vip.html"
     },
     {
-      "source": "/admin",
-      "destination": "/index.html"
+      "source": "/admin/:path*",
+      "destination": "/vip.html"
     },
     {
       "source": "/encargado",
-      "destination": "/index.html"
+      "destination": "/vip.html"
     },
     {
-      "source": "/b",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/invite/:guest*",
-      "destination": "/index.html"
+      "source": "/vip",
+      "destination": "/vip.html"
     },
     {
       "source": "/vip/:guest*",
+      "destination": "/vip.html"
+    },
+    {
+      "source": "/invite/:guest*",
+      "destination": "/vip.html"
+    },
+    {
+      "source": "/i/:guest*",
+      "destination": "/vip.html"
+    },
+    {
+      "source": "/b",
       "destination": "/index.html"
     },
     {
