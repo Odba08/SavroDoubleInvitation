@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs*.db
+brand_assets/*.eps
+brand_assets/*.ai
+brand_assets/*.pdf
+brand_assets/*.jpg

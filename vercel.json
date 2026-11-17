@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/b", "destination": "/index.html" },
+    { "source": "/wednesday", "destination": "/index.html" },
+    { "source": "/opening", "destination": "/index.html" },
+    { "source": "/vip", "destination": "/index.html" },
+    { "source": "/saturday", "destination": "/index.html" },
+    { "source": "/grand-opening", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+

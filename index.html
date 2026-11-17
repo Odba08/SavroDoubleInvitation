@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAVRO — Official Grand Opening Invitations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="./pattern-data.js"></script>
+  <style>
+    :root {
+      --savro-red: #E30613;
+      --savro-red-glow: rgba(227, 6, 19, 0.35);
+      --savro-black: #050507;
+      --savro-card: #111115;
+      --savro-border: rgba(255, 255, 255, 0.14);
+      --savro-silver: #C7C7CC;
+      --savro-white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 0%, #1d0508 0%, #070709 55%, #030304 100%);
+      color: var(--savro-white);
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.25rem 1rem 3rem;
+    }
+
+    /* Top Route Navigation Bar */
+    .route-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      background: rgba(18, 18, 22, 0.92);
+      border: 1px solid var(--savro-border);
+      padding: 0.4rem;
+      border-radius: 999px;
+      margin-block-end: 1.5rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+      max-width: 100%;
+    }
+
+    .route-tab {
+      appearance: none;
+      background: transparent;
+      color: var(--savro-silver);
+      border: none;
+      padding: 0.7rem 1.25rem;
+      min-height: 48px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .route-tab:hover {
+      color: var(--savro-white);
+    }
+
+    .route-tab[aria-selected="true"] {
+      background: var(--savro-red);
+      color: var(--savro-white);
+      box-shadow: 0 4px 18px var(--savro-red-glow);
+    }
+
+    .route-tab:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--savro-red);
+      outline-offset: 2px;
+    }
+
+    /* Main Workspace Layout */
+    .workspace {
+      width: 100%;
+      max-width: 1060px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      align-items: start;
+      justify-items: center;
+    }
+
+    @media (min-width: 860px) {
+      .workspace.has-controls {
+        grid-template-columns: 380px 1fr;
+        align-items: center;
+      }
+    }
+
+    /* Control Panel for Personalization & Download */
+    .control-card {
+      width: 100%;
+      max-width: 460px;
+      background: rgba(17, 17, 21, 0.94);
+      border: 1px solid rgba(227, 6, 19, 0.4);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    }
+
+    .control-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--savro-red);
+      margin-block-end: 0.4rem;
+    }
+
+    .control-title {
+      font-family: 'Cormorant Garamond', Didot, Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-block-end: 0.5rem;
+      color: var(--savro-white);
+    }
+
+    .control-desc {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--savro-silver);
+      margin-block-end: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+      margin-block-end: 1.25rem;
+    }
+
+    label {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--savro-white);
+      padding: 6px 0;
+      margin: -6px 0;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      font: inherit;
+      font-size: max(1rem, 1em);
+      padding: 0.8rem 1rem;
+      min-height: 48px;
+      border-radius: 12px;
+      border: 1.5px solid #767676;
+      background: #09090C;
+      color: var(--savro-white);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    @media (pointer: coarse) {
+      input[type="text"],
+      .btn-primary,
+      .btn-secondary {
+        min-height: 52px;
+      }
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--savro-red);
+      box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.2);
+    }
+
+    input[type="text"]:user-invalid {
+      border-color: #ff4d4d;
+    }
+
+    .field-hint {
+      font-size: 0.78rem;
+      line-height: 1.4;
+      color: var(--savro-silver);
+    }
+
+    .field-error {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #ff6b6b;
+      min-height: 1.1em;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-primary {
+      appearance: none;
+      width: 100%;
+      min-height: 48px;
+      padding: 0.85rem 1.25rem;
+      border-radius: 12px;
+      border: none;
+      background: var(--savro-red);
+      color: var(--savro-white);
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      box-shadow: 0 8px 24px var(--savro-red-glow);
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: #ff1422;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      appearance: none;
+      width: 100%;
+      min-height: 48px;
+      padding: 0.75rem 1.1rem;
+      border-radius: 12px;
+      border: 1px solid var(--savro-border);
+      background: #1A1A20;
+      color: var(--savro-white);
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: #22222A;
+    }
+
+    .status-msg {
+      margin-block-start: 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #4ade80;
+      min-height: 1.2em;
+      text-align: center;
+    }
+
+    /* Flyer Preview Stage */
+    .flyer-stage {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .canvas-wrapper {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 9 / 16;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(227, 6, 19, 0.3);
+      background: #050505;
+      position: relative;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Route Switcher Navigation -->
+  <nav class="route-nav" aria-label="Invitation Routes">
+    <button type="button" id="tab-route-b" class="route-tab" aria-selected="true">
+      Route 1 (/b) • Wed Nov 18 (10:00 AM)
+    </button>
+    <button type="button" id="tab-route-vip" class="route-tab" aria-selected="false">
+      Route 2 (/vip) • Grand Opening Guest Invite
+    </button>
+  </nav>
+
+  <main id="workspace" class="workspace">
+    <!-- Control Card for Route 2 (Personalizable Guest Invitation) -->
+    <section id="vip-controls" class="control-card" hidden>
+      <span class="control-badge">VIP Guest Personalizer</span>
+      <h1 id="form-heading" class="control-title">Personalize Invitation</h1>
+      <p class="control-desc">
+        Enter the guest's name below. It renders live onto the official SAVRO invitation in the invitation's typography so you can download their custom photo.
+      </p>
+
+      <form id="guest-form" aria-labelledby="form-heading" action="#vip" method="GET" novalidate>
+        <div class="form-group">
+          <label for="guest-name">Guest Full Name <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="guest-name"
+            name="guestName"
+            autocomplete="name"
+            enterkeyhint="done"
+            maxlength="48"
+            required
+            placeholder="e.g. Carlos Mendoza"
+            aria-describedby="guest-help guest-error"
+          />
+          <span id="guest-help" class="field-hint">
+            Up to 48 characters. Automatically styled in the invitation's serif font.
+          </span>
+          <span id="guest-error" class="field-error" aria-live="polite"></span>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" id="download-vip-btn" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download Invitation Photo
+          </button>
+
+          <button type="button" id="share-vip-btn" class="btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            Share Personalized Photo
+          </button>
+        </div>
+
+        <div id="download-status" class="status-msg" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <!-- Live High-Res Invitation Canvas Stage -->
+    <section class="flyer-stage" aria-label="Invitation Flyer Preview">
+      <div class="canvas-wrapper">
+        <canvas id="flyer-canvas" width="1080" height="1920"></canvas>
+      </div>
+
+      <!-- Download button for Route 1 (/b) -->
+      <div id="route-b-actions" class="quick-actions">
+        <button type="button" id="download-b-btn" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Flyer Photo (PNG)
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Official SAVRO Vector Paths (from Logotipo savro-25.svg, viewBox 20 40 260 205)
+    const SAVRO_LETTER_PATHS = [
+      "M68.54,208.01c6.69,6.24,2.13,21.27-10.19,21.27h-21.96s1.21-6.88,1.21-6.88h21.11c5.95,0,6.95-6.88,3.79-9.86l-16.76-15.46c-3.53-3.26-3.25-9.29.6-13.47,2.2-2.41,5.3-3.97,8.49-3.97h21.96s-1.21,6.88-1.21,6.88h-21.96c-1.49,0-2.96,1.13-3.37,2.62-.32.99-.14,1.99.6,2.63l17.54,16.24h.14Z",
+      "M89.11,212.05l-7.65,17.3h-6.94s15.84-36.02,15.84-36.02c3.08-7.02,6.24-13.69,15.44-13.69,9.21,0,9.95,6.67,10.62,13.69l3.3,35.95-7.1.07-1.56-17.3c-1.07-3.97-4.82-6.81-9.71-6.81-4.89,0-9.64,2.84-12.11,6.81h-.14ZM94.5,199.92c2.51-.99,5.23-1.56,8-1.56s5.28.57,7.45,1.56l-.55-5.74c-.31-3.48-.56-7.66-4.81-7.66-4.25,0-5.98,4.18-7.51,7.66l-2.57,5.74Z",
+      "M127.84,215.74l-3.28-36.1,7.07.07,3.21,35.24c.31,3.47.56,7.66,4.81,7.66,4.25,0,5.98-4.18,7.51-7.66l15.63-35.24,7.38-.07-16.27,36.1c-3.15,7.02-6.24,13.69-15.44,13.69-9.21,0-10.02-6.67-10.62-13.69Z",
+      "M175.63,229.35h-6.87s8.74-49.64,8.74-49.64h24.37c5.38,0,9,4.4,8.05,9.79-.66,3.76-3.36,7.02-6.76,8.65-2.41,1.21-7.34,3.05-11.42,4.54-.83.28-1.45.99-1.6,1.84-.15.85.22,1.56.95,1.84,3.56,1.49,7.84,3.33,9.83,4.54,2.76,1.63,4.32,4.82,3.76,8.44l-1.76,10h-6.94s1.52-8.65,1.52-8.65c.26-1.49.6-2.98-.91-3.69-1.43-.71-7.12-3.4-12.16-5.75-5.3-2.48-2.88-11.42,2.39-13.54,6.78-2.7,14.47-5.74,14.55-5.82.88-.57,1.52-1.42,1.7-2.41.29-1.63-.82-2.98-2.45-2.98h-17.5s-7.47,42.83-7.47,42.83Z",
+      "M213.64,204.46c2.41-13.69,15.49-24.82,29.16-24.82,13.67,0,22.83,11.13,20.42,24.82-2.41,13.69-15.49,24.82-29.16,24.82s-22.83-11.13-20.42-24.82ZM220.51,204.46c-1.75,9.93,4.84,17.94,14.76,17.94s19.33-8.01,21.08-17.94c1.75-9.93-4.84-17.94-14.76-17.94s-19.33,8.01-21.08,17.94Z"
+    ];
+    const SAVRO_CROWN_PATH = "M168.22,155.2c-12.95-.85-28.63-.72-46.59,1.62-5.94.78-11.82,1.95-17.75,2.76,2.32-1.23,5.11-1.99,7.65-2.77,4.88-1.49,9.84-2.7,14.82-3.8,5.93-12.88,11.95-25.8,19.14-38.04l-13.08,36.98c26.71-5.14,54.18-4.31,80.13,4.69,8.71-19.89,18.87-39.15,30.81-57.25l-45.66,22.52-6.78-17.14-10.62,7.53,7.43,18.49,34.89-18.19-35.63,32.89c-6.7-17.82-11.8-36.19-16.27-54.69-1.52-6.29-2.58-13.46-4.35-19.54-.07-.23-.03-.58-.32-.69l-41.26,71.81-33.26-41.76,36.11,26.48,11.22-16.57-10-9.61-9.34,15.53-42.47-30.32c10.93,25.66,17.8,82.1,17.8,82.1,15.83-4.18,32.08-6.35,48.4-7.55,5.14-.38,10.29-.64,15.44-.79,33.2-.41,66.52,8.34,66.52,8.34-26.35-11.94-56.94-13.05-56.94-13.05h-.02ZM167.07,89.13c.77,1.16,4.87,19.29,7.22,27.92l-6.08,9.66s-1.39-36.99-1.14-37.57Z";
+
+    const canvas = document.getElementById('flyer-canvas');
+    const ctx = canvas.getContext('2d');
+    const tabRouteB = document.getElementById('tab-route-b');
+    const tabRouteVip = document.getElementById('tab-route-vip');
+    const workspace = document.getElementById('workspace');
+    const vipControls = document.getElementById('vip-controls');
+    const routeBActions = document.getElementById('route-b-actions');
+    const guestForm = document.getElementById('guest-form');
+    const guestInput = document.getElementById('guest-name');
+    const guestError = document.getElementById('guest-error');
+    const downloadStatus = document.getElementById('download-status');
+    const downloadBBtn = document.getElementById('download-b-btn');
+    const shareVipBtn = document.getElementById('share-vip-btn');
+
+    let currentRoute = 'b'; // 'b' (Wed Nov 18 10:00 AM) or 'vip' (Sat Nov 21 3:00 PM + Guest Name)
+    let patternImage = null;
+
+    // Load embedded Savro swirl pattern (taint-free base64 data URI)
+    if (window.SAVRO_PATTERN_DATA_URI) {
+      const img = new Image();
+      img.onload = () => {
+        patternImage = img;
+        renderFlyer();
+      };
+      img.src = window.SAVRO_PATTERN_DATA_URI;
+    }
+
+    function drawTrackedText(text, x, y, font, fillStyle, letterSpacingPx) {
+      ctx.save();
+      ctx.font = font;
+      ctx.fillStyle = fillStyle;
+      ctx.textBaseline = 'middle';
+
+      const chars = Array.from(text);
+      let totalWidth = 0;
+      const widths = chars.map((ch) => {
+        const w = ctx.measureText(ch).width;
+        totalWidth += w;
+        return w;
+      });
+      totalWidth += Math.max(0, chars.length - 1) * letterSpacingPx;
+
+      let cursorX = x - totalWidth / 2;
+      for (let i = 0; i < chars.length; i++) {
+        ctx.fillText(chars[i], cursorX, y);
+        cursorX += widths[i] + letterSpacingPx;
+      }
+      ctx.restore();
+    }
+
+    function drawSavroVectorLogo(centerX, topY, targetWidth) {
+      ctx.save();
+      const scale = targetWidth / 260;
+      ctx.translate(centerX - targetWidth / 2 - 20 * scale, topY - 40 * scale);
+      ctx.scale(scale, scale);
+
+      ctx.fillStyle = '#E30613';
+      ctx.fill(new Path2D(SAVRO_CROWN_PATH));
+
+      ctx.fillStyle = '#FFFFFF';
+      for (const d of SAVRO_LETTER_PATHS) {
+        ctx.fill(new Path2D(d));
+      }
+      ctx.restore();
+    }
+
+    function drawCornerBrackets(x, y, w, h, len, color, lineWidth) {
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = lineWidth;
+      ctx.beginPath();
+      // Top-left
+      ctx.moveTo(x, y + len);
+      ctx.lineTo(x, y);
+      ctx.lineTo(x + len, y);
+      // Top-right
+      ctx.moveTo(x + w - len, y);
+      ctx.lineTo(x + w, y);
+      ctx.lineTo(x + w, y + len);
+      // Bottom-left
+      ctx.moveTo(x, y + h - len);
+      ctx.lineTo(x, y + h);
+      ctx.lineTo(x + len, y + h);
+      // Bottom-right
+      ctx.moveTo(x + w - len, y + h);
+      ctx.lineTo(x + w, y + h);
+      ctx.lineTo(x + w, y + h - len);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawDividerWithDiamond(y, centerX, halfSpan) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(centerX - halfSpan, y);
+      ctx.lineTo(centerX - 22, y);
+      ctx.moveTo(centerX + 22, y);
+      ctx.lineTo(centerX + halfSpan, y);
+      ctx.stroke();
+
+      // Center Red Diamond
+      const r = 7;
+      ctx.fillStyle = '#E30613';
+      ctx.beginPath();
+      ctx.moveTo(centerX, y - r);
+      ctx.lineTo(centerX + r, y);
+      ctx.lineTo(centerX, y + r);
+      ctx.lineTo(centerX - r, y);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawRoundedRect(x, y, w, h, r, fillStyle, strokeStyle, lineWidth = 2) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.roundRect(x, y, w, h, r);
+      if (fillStyle) {
+        ctx.fillStyle = fillStyle;
+        ctx.fill();
+      }
+      if (strokeStyle) {
+        ctx.strokeStyle = strokeStyle;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function renderFlyer() {
+      const W = 1080;
+      const H = 1920;
+      ctx.clearRect(0, 0, W, H);
+
+      // 1. Deep Obsidian Base
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, W, H);
+
+      // 2. Savro Organic Red-Line Swirl Pattern (2x3 Grid)
+      if (patternImage) {
+        ctx.save();
+        ctx.globalAlpha = 0.55;
+        const cols = 2;
+        const rows = 3;
+        const tileW = W / cols;
+        const tileH = H / rows;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            ctx.drawImage(patternImage, c * tileW, r * tileH, tileW, tileH);
+          }
+        }
+        ctx.restore();
+      }
+
+      // 3. Smooth Radial Dark Vignette
+      const vignette = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, H * 0.54);
+      vignette.addColorStop(0, 'rgba(5, 5, 5, 0.94)');
+      vignette.addColorStop(0.6, 'rgba(5, 5, 5, 0.85)');
+      vignette.addColorStop(1, 'rgba(0, 0, 0, 0.40)');
+      ctx.fillStyle = vignette;
+      ctx.fillRect(0, 0, W, H);
+
+      // 4. Subtle Crimson Glow behind Logo
+      const glow = ctx.createRadialGradient(W / 2, 340, 0, W / 2, 340, 310);
+      glow.addColorStop(0, 'rgba(227, 6, 19, 0.22)');
+      glow.addColorStop(1, 'rgba(227, 6, 19, 0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, W, H);
+
+      // 5. Architectural Double Frame & Corner Brackets
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(48, 64, W - 96, H - 128);
+
+      ctx.strokeStyle = 'rgba(227, 6, 19, 0.75)';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(64, 80, W - 128, H - 160);
+
+      drawCornerBrackets(46, 62, W - 92, H - 124, 48, '#E30613', 4.5);
+
+      // 6. Top Overline
+      drawTrackedText(
+        'EXCLUSIVE INVITATION',
+        W / 2,
+        155,
+        '600 18px "Montserrat", sans-serif',
+        '#E30613',
+        7
+      );
+
+      // 7. Official SAVRO Vector Logo
+      drawSavroVectorLogo(W / 2, 200, 345);
+
+      if (currentRoute === 'b') {
+        // ====================================================================
+        // ROUTE 1 (/b): WEDNESDAY, NOVEMBER 18 • 10:00 AM
+        // ====================================================================
+        drawTrackedText(
+          'YOU ARE CORDIALLY INVITED TO OUR',
+          W / 2,
+          575,
+          '500 21px "Montserrat", sans-serif',
+          '#C7C7CC',
+          5
+        );
+
+        drawTrackedText(
+          'GRAND',
+          W / 2,
+          680,
+          '700 102px "Cormorant Garamond", Didot, Georgia, serif',
+          '#FFFFFF',
+          10
+        );
+
+        drawTrackedText(
+          'OPENING',
+          W / 2,
+          785,
+          '900 76px "Montserrat", sans-serif',
+          '#E30613',
+          13
+        );
+
+        drawDividerWithDiamond(880, W / 2, 385);
+
+        drawTrackedText(
+          'HOT DOGS   •   CHICHA   •   LOADED HOAGIES',
+          W / 2,
+          932,
+          '700 20px "Montserrat", sans-serif',
+          '#F8F8F8',
+          3.2
+        );
+
+        drawDividerWithDiamond(984, W / 2, 385);
+
+        // Date & Time Card
+        drawRoundedRect(
+          (W - 860) / 2,
+          1060,
+          860,
+          265,
+          20,
+          'rgba(20, 20, 23, 0.92)',
+          '#E30613',
+          2.2
+        );
+
+        drawTrackedText(
+          'WEDNESDAY',
+          W / 2,
+          1118,
+          '700 21px "Montserrat", sans-serif',
+          '#E30613',
+          8
+        );
+
+        drawTrackedText(
+          'NOVEMBER 18, 2026',
+          W / 2,
+          1184,
+          '800 45px "Montserrat", sans-serif',
+          '#FFFFFF',
+          3.5
+        );
+
+        drawRoundedRect((W - 310) / 2, 1232, 310, 56, 28, '#E30613', null);
+
+        drawTrackedText(
+          'AT 10:00 AM',
+          W / 2,
+          1261,
+          '900 26px "Montserrat", sans-serif',
+          '#FFFFFF',
+          4.5
+        );
+
+        // Location Block
+        drawTrackedText(
+          'LOCATION',
+          W / 2,
+          1440,
+          '700 18px "Montserrat", sans-serif',
+          '#E30613',
+          8
+        );
+
+        drawTrackedText(
+          'NEWBO CITY MARKET',
+          W / 2,
+          1510,
+          '700 48px "Cormorant Garamond", Didot, Georgia, serif',
+          '#FFFFFF',
+          3.5
+        );
+
+        drawTrackedText(
+          '1100 3rd St SE, Cedar Rapids, IA 52401',
+          W / 2,
+          1572,
+          '500 25px "Montserrat", sans-serif',
+          '#C7C7CC',
+          1.5
+        );
+
+      } else {
+        // ====================================================================
+        // ROUTE 2 (/vip): GRAND OPENING EVENT • SATURDAY 21, 2026 • 3:00 PM + GUEST NAME
+        // ====================================================================
+        drawTrackedText(
+          'YOU ARE CORDIALLY INVITED TO OUR',
+          W / 2,
+          540,
+          '500 20px "Montserrat", sans-serif',
+          '#C7C7CC',
+          5
+        );
+
+        drawTrackedText(
+          'GRAND OPENING',
+          W / 2,
+          625,
+          '700 76px "Cormorant Garamond", Didot, Georgia, serif',
+          '#FFFFFF',
+          7
+        );
+
+        drawTrackedText(
+          'EVENT',
+          W / 2,
+          712,
+          '900 66px "Montserrat", sans-serif',
+          '#E30613',
+          16
+        );
+
+        // Guest Name Luxury Frame
+        const rawGuest = (guestInput.value || '').trim();
+        const displayGuest = (rawGuest ? rawGuest : 'VALUED GUEST').toUpperCase();
+
+        drawDividerWithDiamond(790, W / 2, 385);
+
+        drawTrackedText(
+          'PREPARED EXCLUSIVELY FOR',
+          W / 2,
+          835,
+          '600 16px "Montserrat", sans-serif',
+          '#E30613',
+          6.5
+        );
+
+        // Dynamic font scaling so any guest name fits with the exact invitation serif typography
+        let guestFontSize = 58;
+        if (displayGuest.length > 28) guestFontSize = 36;
+        else if (displayGuest.length > 20) guestFontSize = 44;
+        else if (displayGuest.length > 15) guestFontSize = 50;
+
+        drawTrackedText(
+          displayGuest,
+          W / 2,
+          902,
+          `700 ${guestFontSize}px "Cormorant Garamond", Didot, Georgia, serif`,
+          '#FFFFFF',
+          4.5
+        );
+
+        drawDividerWithDiamond(965, W / 2, 385);
+
+        // Culinary Specialties
+        drawTrackedText(
+          'HOT DOGS   •   CHICHA   •   LOADED HOAGIES',
+          W / 2,
+          1018,
+          '700 19px "Montserrat", sans-serif',
+          '#F8F8F8',
+          3.0
+        );
+
+        // Date & Time Card
+        drawRoundedRect(
+          (W - 860) / 2,
+          1075,
+          860,
+          255,
+          20,
+          'rgba(20, 20, 23, 0.92)',
+          '#E30613',
+          2.2
+        );
+
+        drawTrackedText(
+          'SATURDAY',
+          W / 2,
+          1130,
+          '700 20px "Montserrat", sans-serif',
+          '#E30613',
+          8
+        );
+
+        drawTrackedText(
+          'NOVEMBER 21, 2026',
+          W / 2,
+          1194,
+          '800 44px "Montserrat", sans-serif',
+          '#FFFFFF',
+          3.5
+        );
+
+        drawRoundedRect((W - 300) / 2, 1242, 300, 54, 27, '#E30613', null);
+
+        drawTrackedText(
+          'AT 3:00 PM',
+          W / 2,
+          1270,
+          '900 26px "Montserrat", sans-serif',
+          '#FFFFFF',
+          4.5
+        );
+
+        // Location Block
+        drawTrackedText(
+          'LOCATION',
+          W / 2,
+          1445,
+          '700 18px "Montserrat", sans-serif',
+          '#E30613',
+          8
+        );
+
+        drawTrackedText(
+          'NEWBO CITY MARKET',
+          W / 2,
+          1515,
+          '700 48px "Cormorant Garamond", Didot, Georgia, serif',
+          '#FFFFFF',
+          3.5
+        );
+
+        drawTrackedText(
+          '1100 3rd St SE, Cedar Rapids, IA 52401',
+          W / 2,
+          1575,
+          '500 25px "Montserrat", sans-serif',
+          '#C7C7CC',
+          1.5
+        );
+      }
+
+      // Bottom Footer Tagline
+      drawTrackedText(
+        'WE LOOK FORWARD TO CELEBRATING WITH YOU',
+        W / 2,
+        1765,
+        '400 17px "Montserrat", sans-serif',
+        'rgba(199, 199, 204, 0.85)',
+        5
+      );
+    }
+
+    function setRoute(route, pushHistory = true) {
+      currentRoute = route === 'vip' ? 'vip' : 'b';
+      const isVip = currentRoute === 'vip';
+
+      tabRouteB.setAttribute('aria-selected', String(!isVip));
+      tabRouteVip.setAttribute('aria-selected', String(isVip));
+
+      vipControls.hidden = !isVip;
+      routeBActions.hidden = isVip;
+      workspace.classList.toggle('has-controls', isVip);
+
+      if (pushHistory && window.location.protocol !== 'file:') {
+        const nextUrl = isVip ? '/vip' : '/b';
+        window.history.pushState({ route: currentRoute }, '', nextUrl);
+      }
+      renderFlyer();
+    }
+
+    function detectInitialRoute() {
+      const path = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      const guestParam = params.get('guest') || params.get('name');
+      if (guestParam) {
+        guestInput.value = guestParam;
+      }
+      if (
+        path.includes('vip') ||
+        path.includes('saturday') ||
+        path.includes('grand') ||
+        hash.includes('vip') ||
+        Boolean(guestParam)
+      ) {
+        setRoute('vip', false);
+      } else {
+        setRoute('b', false);
+      }
+    }
+
+    function downloadCanvasImage(filename) {
+      renderFlyer();
+      const dataUrl = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    tabRouteB.addEventListener('click', () => setRoute('b'));
+    tabRouteVip.addEventListener('click', () => setRoute('vip'));
+    window.addEventListener('popstate', () => detectInitialRoute());
+
+    // Live updates on input + non-intrusive error clearing (per modern-web-guidance `forms`)
+    guestInput.addEventListener('input', () => {
+      guestInput.setCustomValidity('');
+      guestInput.removeAttribute('aria-invalid');
+      guestError.textContent = '';
+      downloadStatus.textContent = '';
+      renderFlyer();
+    });
+
+    // Validate on blur if edited
+    guestInput.addEventListener('blur', () => {
+      if (guestInput.value.length > 0 && !guestInput.value.trim()) {
+        guestInput.setCustomValidity('Please enter the guest name.');
+        guestInput.setAttribute('aria-invalid', 'true');
+        guestError.textContent = 'Please enter a valid guest name.';
+      }
+    });
+
+    // IME-safe Enter handling
+    guestInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.isComposing) {
+        e.preventDefault();
+      }
+    });
+
+    guestForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = guestInput.value.trim();
+      if (!name) {
+        guestInput.setCustomValidity('Please enter the guest name to personalize the invitation.');
+        guestInput.setAttribute('aria-invalid', 'true');
+        guestError.textContent = 'Please enter the guest name before downloading.';
+        guestInput.focus();
+        return;
+      }
+      const safeSlug = name.replace(/[^a-zA-Z0-9_-]+/g, '_');
+      const filename = `Savro_Invitation_${safeSlug}.png`;
+      downloadCanvasImage(filename);
+      downloadStatus.textContent = `Downloaded personalized invitation for ${name}!`;
+    });
+
+    shareVipBtn.addEventListener('click', async () => {
+      const name = guestInput.value.trim() || 'Guest';
+      const safeSlug = name.replace(/[^a-zA-Z0-9_-]+/g, '_');
+      const filename = `Savro_Invitation_${safeSlug}.png`;
+      renderFlyer();
+
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
+        const file = new File([blob], filename, { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              files: [file],
+              title: `SAVRO Grand Opening Invitation — ${name}`,
+              text: `You are cordially invited to the SAVRO Grand Opening Event on Saturday, November 21, 2026 at 3:00 PM!`
+            });
+            return;
+          } catch {}
+        }
+        downloadCanvasImage(filename);
+        downloadStatus.textContent = `Downloaded ${filename}!`;
+      }, 'image/png');
+    });
+
+    downloadBBtn.addEventListener('click', () => {
+      downloadCanvasImage('Savro_Wednesday_Nov_18_Opening.png');
+    });
+
+    // Initial render and re-render once web fonts finish loading
+    detectInitialRoute();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => renderFlyer());
+    }
+  </script>
+</body>
+</html>

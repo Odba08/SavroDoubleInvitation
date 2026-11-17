@@ -1,0 +1,10 @@
+{
+  "name": "savro-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SAVRO Grand Opening Interactive Web Invitations & Personalized Flyer Generator",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
+
