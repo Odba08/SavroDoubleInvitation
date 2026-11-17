@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/invite/:guest*",
@@ -13,18 +12,27 @@
       "destination": "/api/preview?type=vip&guest=:guest*"
     },
     {
-      "source": "/(b|18|opening)?",
-      "has": [
-        {
-          "type": "header",
-          "key": "user-agent",
-          "value": ".*(WhatsApp|facebookexternalhit|Facebot|Twitterbot|TelegramBot|Slackbot|Discordbot).*"
-        }
-      ],
-      "destination": "/api/preview?type=opening"
+      "source": "/admin",
+      "destination": "/index.html"
     },
     {
-      "source": "/((?!api/|assets/|og-|pattern|savro_).*)",
+      "source": "/encargado",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/b",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/invite/:guest*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/vip/:guest*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]

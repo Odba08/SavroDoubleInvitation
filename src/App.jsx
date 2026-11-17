@@ -539,9 +539,13 @@ function StoreManagerPanel() {
 export default function App() {
   const path = typeof window !== 'undefined' ? window.location.pathname : '/';
   const search = typeof window !== 'undefined' ? window.location.search : '';
+  const hash = typeof window !== 'undefined' ? window.location.hash : '';
   const params = new URLSearchParams(search);
 
-  const isAdminRoute = /^\/(admin|encargado|manager|panel)\b/i.test(path);
+  const isAdminRoute =
+    /^\/(admin|encargado|manager|panel)\b/i.test(path) ||
+    hash.toLowerCase().includes('admin') ||
+    params.has('admin');
   const inviteMatch = path.match(/^\/(?:invite|vip|i)\/(.+)$/i);
   const queryGuest = params.get('guest') || params.get('name');
   const isPersonalInvite = !isAdminRoute && Boolean(inviteMatch || queryGuest);
