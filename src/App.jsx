@@ -15,288 +15,246 @@ const GOOGLE_MAPS_URL =
   'https://www.google.com/maps/search/?api=1&query=NewBo+City+Market+1100+3rd+St+SE+Cedar+Rapids+IA+52401';
 
 /**
- * SAVRO Official Digital Menu (/menu)
+ * SAVRO Official Digital Menu (/menu) — Authentic Editorial Restaurant Menu
  */
 function SavroMenuPage() {
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const categories = [
-    { id: 'all', label: 'All Menu' },
-    { id: 'hotdogs', label: '🌭 Loaded Hot Dogs' },
-    { id: 'hoagie', label: '🥖 Pressed Hoagie' },
-    { id: 'corn', label: '🌽 Street Corn Cup' },
-    { id: 'sweets', label: '🍓 Sweet Treats' },
-    { id: 'drinks', label: '🥤 Refreshing Drinks' },
-  ];
-
-  const showSection = (id) => activeCategory === 'all' || activeCategory === id;
-
   return (
-    <main className="menu-page">
-      <article className="menu-board" aria-label="SAVRO Street Food and Sweet Treats Menu">
-        <span className="corner-bracket tl" aria-hidden="true" />
-        <span className="corner-bracket tr" aria-hidden="true" />
-        <span className="corner-bracket bl" aria-hidden="true" />
-        <span className="corner-bracket br" aria-hidden="true" />
+    <main className="real-menu-wrapper">
+      <article className="real-menu-sheet" aria-label="SAVRO Street Food and Sweet Treats Menu">
+        {/* Top Masthead */}
+        <header className="rm-masthead">
+          <img
+            src="/savro_logo_stacked_dark_bg.svg"
+            alt="SAVRO"
+            className="rm-logo"
+          />
+          <h1 className="rm-MainTitle">MENU</h1>
+          <p className="rm-SubTitle">STREET FOOD &amp; SWEET TREATS</p>
+          <p className="rm-TriTag">Fresh &nbsp;•&nbsp; Loaded &nbsp;•&nbsp; Delicious</p>
+        </header>
 
-        <div className="menu-content">
-          {/* Header */}
-          <header className="menu-header">
-            <p className="inv-overline">OFFICIAL MENU</p>
-            <img
-              src="/savro_logo_stacked_dark_bg.svg"
-              alt="SAVRO"
-              className="menu-logo"
-            />
-            <h1 className="menu-hero-title">STREET FOOD &amp; SWEET TREATS</h1>
-            <div className="menu-tagline-pill">
-              Fresh &nbsp;•&nbsp; Loaded &nbsp;•&nbsp; Delicious
+        {/* Savory Hero Showcase */}
+        <figure className="rm-photo-showcase">
+          <img
+            src="/food-savory.jpg"
+            alt="Loaded Venezuelan Hot Dog and Toasted Pressed Hoagie"
+            className="rm-photo-img"
+            loading="eager"
+          />
+        </figure>
+
+        {/* 1. LOADED HOT DOGS */}
+        <section className="rm-section" aria-labelledby="sec-hotdogs">
+          <div className="rm-ribbon-wrap">
+            <h2 id="sec-hotdogs" className="rm-ribbon">LOADED HOT DOGS</h2>
+            <p className="rm-section-tagline">Big flavors in every bite!</p>
+          </div>
+
+          <div className="rm-dish-list">
+            <div className="rm-dish-item">
+              <div className="rm-dish-title-row">
+                <h3 className="rm-dish-name">CLASSIC DOG</h3>
+              </div>
+              <p className="rm-dish-desc">
+                An all-beef or beef &amp; pork hot dog topped with sweet pickle relish, diced onions, ketchup, and yellow mustard.
+              </p>
             </div>
 
-            {/* Category Filter Pills */}
-            <nav className="menu-filter-bar" aria-label="Menu Categories">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  type="button"
-                  className="menu-filter-btn"
-                  aria-pressed={activeCategory === cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </nav>
-          </header>
-
-          {/* 1. LOADED HOT DOGS */}
-          {showSection('hotdogs') && (
-            <section className="menu-section" aria-labelledby="sec-hotdogs">
-              <div className="menu-section-header">
-                <h2 id="sec-hotdogs" className="menu-section-title">
-                  <span aria-hidden="true">🌭</span> LOADED HOT DOGS
-                </h2>
-                <p className="menu-section-subtitle">Big flavors in every bite!</p>
+            <div className="rm-dish-item">
+              <div className="rm-dish-title-row">
+                <h3 className="rm-dish-name">CARAQUEÑO DOG</h3>
+                <span className="rm-dish-callout">— Loaded with flavor!</span>
               </div>
-
-              <div className="dish-grid">
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">CLASSIC DOG</h3>
-                  </div>
-                  <p className="dish-desc">
-                    An all-beef or beef &amp; pork hot dog topped with sweet pickle relish, diced onions, ketchup, and yellow mustard.
-                  </p>
-                  <div className="dish-meta" />
-                </article>
-
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">CARAQUEÑO DOG</h3>
-                    <span className="dish-badge">Loaded with flavor!</span>
-                  </div>
-                  <p className="dish-desc">
-                    An all-beef or beef &amp; pork hot dog piled high with shredded cabbage and carrots, diced onions, sweet corn, crispy potato sticks, creamy tartar sauce, ketchup, and shredded cheddar cheese.
-                  </p>
-                  <div className="dish-meta" />
-                </article>
-
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">SALCHIQUESO DOG</h3>
-                    <span className="dish-badge">A cheese lover’s favorite!</span>
-                  </div>
-                  <p className="dish-desc">
-                    An all-beef or beef &amp; pork hot dog loaded with shredded cabbage and carrots, crispy potato sticks, creamy tartar sauce, ketchup, and soft, melty queso de mano cheese.
-                  </p>
-                  <div className="dish-meta" />
-                </article>
-              </div>
-            </section>
-          )}
-
-          {/* 2. LOADED PRESSED HOAGIE */}
-          {showSection('hoagie') && (
-            <section className="menu-section" aria-labelledby="sec-hoagie">
-              <div className="menu-section-header">
-                <h2 id="sec-hoagie" className="menu-section-title">
-                  <span aria-hidden="true">🥖</span> LOADED PRESSED HOAGIE
-                </h2>
-                <p className="menu-section-subtitle">Toasted, loaded &amp; pressed to perfection!</p>
-              </div>
-
-              <div className="dish-grid">
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">SIGNATURE PRESSED HOAGIE</h3>
-                    <span className="dish-badge">House Specialty</span>
-                  </div>
-                  <p className="dish-desc">
-                    A warm, pressed hoagie packed with your choice of protein, ham, cheese, fresh lettuce, tomatoes, and our signature sauces.
-                  </p>
-                  <div className="dish-meta">
-                    <div className="protein-box">
-                      <p className="protein-title">CHOOSE YOUR PROTEIN</p>
-                      <ul className="protein-list">
-                        <li>Shredded Beef</li>
-                        <li>Shredded Chicken</li>
-                        <li>Slow-Roasted Pork</li>
-                      </ul>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </section>
-          )}
-
-          {/* 3. LOADED STREET CORN CUP */}
-          {showSection('corn') && (
-            <section className="menu-section" aria-labelledby="sec-corn">
-              <div className="menu-section-header">
-                <h2 id="sec-corn" className="menu-section-title">
-                  <span aria-hidden="true">🌽</span> LOADED STREET CORN CUP
-                </h2>
-                <p className="menu-section-subtitle">Creamy, cheesy &amp; delicious!</p>
-              </div>
-
-              <div className="dish-grid">
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">STREET CORN CUP</h3>
-                  </div>
-                  <p className="dish-desc">
-                    Sweet corn kernels topped with Cotija cheese, creamy nata, and cheddar cheese.
-                  </p>
-                  <div className="dish-meta">
-                    <span className="addon-note">Add crispy bacon for extra!</span>
-                  </div>
-                </article>
-              </div>
-            </section>
-          )}
-
-          {/* 4. SWEET TREATS */}
-          {showSection('sweets') && (
-            <section className="menu-section" aria-labelledby="sec-sweets">
-              <div className="menu-section-header">
-                <h2 id="sec-sweets" className="menu-section-title">
-                  <span aria-hidden="true">🍓</span> SWEET TREATS
-                </h2>
-                <p className="menu-section-subtitle">Handcrafted indulgent desserts</p>
-              </div>
-
-              <div className="dish-grid">
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">STRAWBERRIES &amp; CREAM</h3>
-                  </div>
-                  <p className="dish-desc">
-                    Fresh, juicy strawberries covered in delicious sweet cream.
-                    <br />
-                    <strong style={{ color: '#fff' }}>Toppings:</strong> Nutella or sweetened condensed milk.
-                  </p>
-                  <div className="dish-meta">
-                    <span className="addon-note">Extra topping +$1</span>
-                  </div>
-                </article>
-
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">MINI PANCAKES</h3>
-                    <span className="dish-badge">Fluffy little bites of happiness!</span>
-                  </div>
-                  <p className="dish-desc">
-                    <strong style={{ color: '#fff' }}>10 Pieces</strong> — Includes 2 fruit choices + 2 toppings.
-                    <br />
-                    <strong style={{ color: '#fff' }}>20 Pieces</strong> — Includes 2 fruit choices + 2 toppings.
-                  </p>
-                  <div className="dish-meta">
-                    <div className="protein-box">
-                      <p className="protein-title">FRUIT CHOICES</p>
-                      <p className="dish-desc" style={{ color: '#fff', fontWeight: 600 }}>
-                        Strawberries, bananas, blueberries.
-                      </p>
-                    </div>
-                  </div>
-                </article>
-
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">GOLDEN WAFFLES</h3>
-                  </div>
-                  <p className="dish-desc">
-                    Freshly made golden waffles topped with your choice of 2 fruits and 2 delicious toppings.
-                  </p>
-                  <div className="dish-meta">
-                    <div className="protein-box">
-                      <p className="protein-title">FRUIT CHOICES</p>
-                      <p className="dish-desc" style={{ color: '#fff', fontWeight: 600 }}>
-                        Strawberries, bananas, blueberries.
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </section>
-          )}
-
-          {/* 5. REFRESHING DRINKS */}
-          {showSection('drinks') && (
-            <section className="menu-section" aria-labelledby="sec-drinks">
-              <div className="menu-section-header">
-                <h2 id="sec-drinks" className="menu-section-title">
-                  <span aria-hidden="true">🥤</span> REFRESHING DRINKS
-                </h2>
-                <p className="menu-section-subtitle">Traditional ice-cold favorites</p>
-              </div>
-
-              <div className="dish-grid">
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">CREAMY CHICHA</h3>
-                  </div>
-                  <p className="dish-desc">
-                    A sweet &amp; creamy rice-based drink.
-                  </p>
-                  <div className="dish-meta">
-                    <div className="price-pills" aria-label="Creamy Chicha sizes and prices">
-                      <span className="price-pill">9 oz — <strong>$7</strong></span>
-                      <span className="price-pill">16 oz — <strong>$10</strong></span>
-                      <span className="price-pill">32 oz — <strong>$15</strong></span>
-                    </div>
-                  </div>
-                </article>
-
-                <article className="dish-card">
-                  <div className="dish-head">
-                    <h3 className="dish-name">TROPICAL FRUIT TIZANA</h3>
-                  </div>
-                  <p className="dish-desc">
-                    A refreshing tropical fruit drink bursting with fruity flavors.
-                  </p>
-                  <div className="dish-meta">
-                    <div className="price-pills" aria-label="Tropical Fruit Tizana sizes and prices">
-                      <span className="price-pill">9 oz — <strong>$7</strong></span>
-                      <span className="price-pill">16 oz — <strong>$10</strong></span>
-                      <span className="price-pill">32 oz — <strong>$15</strong></span>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </section>
-          )}
-
-          {/* Footer */}
-          <footer className="menu-footer">
-            <div className="diamond-divider" aria-hidden="true">
-              <span className="diamond-dot" />
+              <p className="rm-dish-desc">
+                An all-beef or beef &amp; pork hot dog piled high with shredded cabbage and carrots, diced onions, sweet corn, crispy potato sticks, creamy tartar sauce, ketchup, and shredded cheddar cheese.
+              </p>
             </div>
-            <p className="menu-motto">GOOD FOOD. GOOD MOOD. GREAT FLAVOR.</p>
-            <p className="inv-address">
-              NewBo City Market • 1100 3rd St SE, Cedar Rapids, IA 52401
-            </p>
-          </footer>
-        </div>
+
+            <div className="rm-dish-item">
+              <div className="rm-dish-title-row">
+                <h3 className="rm-dish-name">SALCHIQUESO DOG</h3>
+                <span className="rm-dish-callout">— A cheese lover’s favorite!</span>
+              </div>
+              <p className="rm-dish-desc">
+                An all-beef or beef &amp; pork hot dog loaded with shredded cabbage and carrots, crispy potato sticks, creamy tartar sauce, ketchup, and soft, melty queso de mano cheese.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. LOADED PRESSED HOAGIE */}
+        <section className="rm-section" aria-labelledby="sec-hoagie">
+          <div className="rm-ribbon-wrap">
+            <h2 id="sec-hoagie" className="rm-ribbon">LOADED PRESSED HOAGIE</h2>
+            <p className="rm-section-tagline">Toasted, loaded &amp; pressed to perfection!</p>
+          </div>
+
+          <div className="rm-dish-list">
+            <div className="rm-dish-item">
+              <p className="rm-dish-desc">
+                A warm, pressed hoagie packed with your choice of protein, ham, cheese, fresh lettuce, tomatoes, and our signature sauces.
+              </p>
+              <div className="rm-choice-block">
+                <p className="rm-choice-heading">CHOOSE YOUR PROTEIN</p>
+                <ul className="rm-choice-items">
+                  <li>Shredded Beef</li>
+                  <li>Shredded Chicken</li>
+                  <li>Slow-Roasted Pork</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. LOADED STREET CORN CUP */}
+        <section className="rm-section" aria-labelledby="sec-corn">
+          <div className="rm-ribbon-wrap">
+            <h2 id="sec-corn" className="rm-ribbon">LOADED STREET CORN CUP</h2>
+            <p className="rm-section-tagline">Creamy, cheesy &amp; delicious!</p>
+          </div>
+
+          <div className="rm-dish-list">
+            <div className="rm-dish-item">
+              <p className="rm-dish-desc">
+                Sweet corn kernels topped with Cotija cheese, creamy nata, and cheddar cheese.
+              </p>
+              <span className="rm-extra-highlight">★ Add crispy bacon for extra!</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Sweet Treats & Drinks Showcase */}
+        <figure className="rm-photo-showcase">
+          <img
+            src="/food-sweet.jpg"
+            alt="Golden Waffles, Mini Pancakes with Strawberries and Cream, Creamy Chicha and Tropical Tizana"
+            className="rm-photo-img"
+            loading="lazy"
+          />
+        </figure>
+
+        {/* 4. SWEET TREATS */}
+        <section className="rm-section" aria-labelledby="sec-sweets">
+          <div className="rm-ribbon-wrap">
+            <h2 id="sec-sweets" className="rm-ribbon">SWEET TREATS</h2>
+          </div>
+
+          <div className="rm-dish-list">
+            <div className="rm-dish-item">
+              <div className="rm-dish-title-row">
+                <h3 className="rm-dish-name">STRAWBERRIES &amp; CREAM</h3>
+              </div>
+              <p className="rm-dish-desc">
+                Fresh, juicy strawberries covered in delicious sweet cream.
+                <br />
+                <strong style={{ color: '#fff' }}>Toppings:</strong> Nutella or sweetened condensed milk.
+              </p>
+              <span className="rm-extra-highlight">Extra topping +$1</span>
+            </div>
+
+            <div className="rm-dish-item">
+              <div className="rm-dish-title-row">
+                <h3 className="rm-dish-name">MINI PANCAKES</h3>
+                <span className="rm-dish-callout">— Fluffy little bites of happiness!</span>
+              </div>
+              <p className="rm-dish-desc">
+                <strong style={{ color: '#fff' }}>10 Pieces</strong> — Includes 2 fruit choices + 2 toppings.
+                <br />
+                <strong style={{ color: '#fff' }}>20 Pieces</strong> — Includes 2 fruit choices + 2 toppings.
+              </p>
+              <div className="rm-choice-block">
+                <p className="rm-choice-heading">FRUIT CHOICES</p>
+                <p className="rm-dish-desc" style={{ color: '#fff', fontWeight: 600 }}>
+                  Strawberries, bananas, blueberries.
+                </p>
+              </div>
+            </div>
+
+            <div className="rm-dish-item">
+              <div className="rm-dish-title-row">
+                <h3 className="rm-dish-name">GOLDEN WAFFLES</h3>
+              </div>
+              <p className="rm-dish-desc">
+                Freshly made golden waffles topped with your choice of 2 fruits and 2 delicious toppings.
+              </p>
+              <div className="rm-choice-block">
+                <p className="rm-choice-heading">FRUIT CHOICES</p>
+                <p className="rm-dish-desc" style={{ color: '#fff', fontWeight: 600 }}>
+                  Strawberries, bananas, blueberries.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. REFRESHING DRINKS */}
+        <section className="rm-section" aria-labelledby="sec-drinks">
+          <div className="rm-ribbon-wrap">
+            <h2 id="sec-drinks" className="rm-ribbon">REFRESHING DRINKS</h2>
+          </div>
+
+          <div className="rm-dish-list">
+            <div className="rm-dish-item">
+              <div className="rm-dish-title-row">
+                <h3 className="rm-dish-name">CREAMY CHICHA</h3>
+              </div>
+              <p className="rm-dish-desc">
+                A sweet &amp; creamy rice-based drink.
+              </p>
+              <div className="rm-price-leader-list">
+                <div className="rm-price-row">
+                  <span className="rm-price-size">9 oz</span>
+                  <span className="rm-price-dots" aria-hidden="true" />
+                  <span className="rm-price-val">$7</span>
+                </div>
+                <div className="rm-price-row">
+                  <span className="rm-price-size">16 oz</span>
+                  <span className="rm-price-dots" aria-hidden="true" />
+                  <span className="rm-price-val">$10</span>
+                </div>
+                <div className="rm-price-row">
+                  <span className="rm-price-size">32 oz</span>
+                  <span className="rm-price-dots" aria-hidden="true" />
+                  <span className="rm-price-val">$15</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rm-dish-item">
+              <div className="rm-dish-title-row">
+                <h3 className="rm-dish-name">TROPICAL FRUIT TIZANA</h3>
+              </div>
+              <p className="rm-dish-desc">
+                A refreshing tropical fruit drink bursting with fruity flavors.
+              </p>
+              <div className="rm-price-leader-list">
+                <div className="rm-price-row">
+                  <span className="rm-price-size">9 oz</span>
+                  <span className="rm-price-dots" aria-hidden="true" />
+                  <span className="rm-price-val">$7</span>
+                </div>
+                <div className="rm-price-row">
+                  <span className="rm-price-size">16 oz</span>
+                  <span className="rm-price-dots" aria-hidden="true" />
+                  <span className="rm-price-val">$10</span>
+                </div>
+                <div className="rm-price-row">
+                  <span className="rm-price-size">32 oz</span>
+                  <span className="rm-price-dots" aria-hidden="true" />
+                  <span className="rm-price-val">$15</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="rm-footer">
+          <p className="rm-footer-motto">GOOD FOOD. GOOD MOOD. GREAT FLAVOR.</p>
+          <p className="rm-footer-loc">
+            NewBo City Market • 1100 3rd St SE, Cedar Rapids, IA 52401
+          </p>
+        </footer>
       </article>
     </main>
   );

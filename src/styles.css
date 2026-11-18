@@ -558,344 +558,304 @@ input[type="text"]:user-invalid {
 }
 
 /* ============================================================================
-   SAVRO OFFICIAL DIGITAL MENU (/menu)
+   SAVRO OFFICIAL DIGITAL MENU (/menu) — Authentic Editorial Restaurant Menu
    ============================================================================ */
-.menu-page {
+.real-menu-wrapper {
   min-block-size: 100dvh;
   inline-size: 100%;
+  background-color: #050506;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(227, 6, 19, 0.16) 0%, rgba(5, 5, 6, 0.92) 45%, #040405 100%),
+    url('/pattern_page_6.png');
+  background-size: 100% 100%, 460px auto;
+  background-attachment: scroll;
+  color: var(--savro-white);
   display: flex;
   justify-content: center;
-  padding-block: 1.5rem 3.5rem;
-  padding-inline: 0.85rem;
-  background: radial-gradient(circle at 50% 0%, #200408 0%, #050507 50%, #000000 100%);
+  padding: 0;
 }
 
-.menu-board {
+.real-menu-sheet {
   position: relative;
   inline-size: 100%;
-  max-inline-size: 920px;
-  container: menu-board / inline-size;
-  background-color: #030304;
-  background-image:
-    radial-gradient(circle at 50% 35%, rgba(5, 5, 6, 0.93) 0%, rgba(5, 5, 6, 0.86) 62%, rgba(0, 0, 0, 0.48) 100%),
-    radial-gradient(circle at 50% 8%, rgba(227, 6, 19, 0.20) 0%, rgba(227, 6, 19, 0) 45%),
-    url('/pattern_page_6.png');
-  background-size: 100% 100%, 100% 100%, 540px auto;
-  background-position: center, center, center;
-  border-radius: 22px;
-  padding-block: 3rem 3.25rem;
-  padding-inline: clamp(1.25rem, 4cqi, 3rem);
-  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.92), 0 0 48px rgba(227, 6, 19, 0.14);
-  overflow: clip;
-  animation: cardFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  max-inline-size: 760px;
+  background: rgba(6, 6, 8, 0.92);
+  padding-block: 2.25rem 3.5rem;
+  padding-inline: clamp(1.15rem, 4.5vw, 3.25rem);
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.95);
 }
 
-.menu-board::before {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  pointer-events: none;
+@media (min-width: 768px) {
+  .real-menu-wrapper {
+    padding-block: 2.5rem;
+    padding-inline: 1.5rem;
+  }
+  .real-menu-sheet {
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    outline: 2px solid rgba(227, 6, 19, 0.7);
+    outline-offset: -10px;
+  }
 }
 
-.menu-board::after {
-  content: "";
-  position: absolute;
-  inset: 20px;
-  border: 1.5px solid rgba(227, 6, 19, 0.78);
-  pointer-events: none;
-}
-
-.menu-content {
-  position: relative;
-  z-index: 3;
+/* Menu Top Masthead */
+.rm-masthead {
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
-}
-
-.menu-header {
-  display: flex;
-  flex-direction: column;
-  align-items: safe center;
+  align-items: center;
   text-align: center;
-  gap: 0.75rem;
+  padding-block-end: 1.75rem;
+  border-block-end: 2px solid var(--savro-red);
+  margin-block-end: 2rem;
 }
 
-.menu-logo {
+.rm-logo {
   display: block;
-  inline-size: clamp(145px, 28cqi, 200px);
+  inline-size: clamp(150px, 38vw, 210px);
   aspect-ratio: 260 / 205;
   block-size: auto;
-  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.75));
+  margin-block-end: 0.75rem;
 }
 
-.menu-hero-title {
-  font-family: 'Cormorant Garamond', Didot, Georgia, serif;
-  font-weight: 700;
-  font-size: clamp(1.75rem, 1rem + 4cqi, 3.25rem);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--savro-white);
-  line-height: 1.1;
-}
-
-.menu-tagline-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  background: rgba(227, 6, 19, 0.15);
-  border: 1.5px solid var(--savro-red);
-  color: var(--savro-white);
-  padding-block: 0.42rem;
-  padding-inline: 1.35rem;
-  border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-}
-
-/* Filter / Quick-Jump Pill Bar */
-.menu-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  flex-wrap: balance;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-block-start: 0.35rem;
-}
-
-.menu-filter-btn {
-  appearance: none;
-  min-block-size: 44px;
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(18, 18, 23, 0.85);
-  color: var(--savro-silver);
-  font: inherit;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.menu-filter-btn:hover {
-  color: var(--savro-white);
-  border-color: rgba(255, 255, 255, 0.38);
-}
-
-.menu-filter-btn[aria-pressed="true"] {
-  background: var(--savro-red);
-  border-color: var(--savro-red);
-  color: var(--savro-white);
-  box-shadow: 0 6px 18px var(--savro-red-glow);
-}
-
-.menu-filter-btn:focus-visible {
-  outline: 3px solid var(--savro-red);
-  outline-offset: 2px;
-}
-
-/* Category Sections */
-.menu-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1.15rem;
-}
-
-.menu-section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: safe center;
-  text-align: center;
-  gap: 0.3rem;
-  padding-block-bottom: 0.5rem;
-  border-block-end: 1px solid rgba(227, 6, 19, 0.38);
-}
-
-.menu-section-title {
-  font-family: 'Cormorant Garamond', Didot, Georgia, serif;
-  font-weight: 700;
-  font-size: clamp(1.45rem, 0.9rem + 2.8cqi, 2.25rem);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--savro-white);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.menu-section-subtitle {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--savro-red);
-}
-
-/* Responsive Dish Grid using CSS Grid + Subgrid */
-.dish-grid {
-  inline-size: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.1rem;
-}
-
-.dish-card {
-  grid-row: span 3;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-rows: subgrid;
-  gap: 0.55rem;
-  background: rgba(16, 16, 20, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-inline-start: 3.5px solid var(--savro-red);
-  border-radius: 14px;
-  padding-block: 1.2rem;
-  padding-inline: 1.25rem;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.dish-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(227, 6, 19, 0.65);
-}
-
-.dish-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.45rem;
-}
-
-.dish-name {
+.rm-MainTitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 900;
+  font-size: clamp(2.35rem, 1.4rem + 5vw, 4rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--savro-white);
+  line-height: 0.95;
+}
+
+.rm-SubTitle {
+  font-family: 'Cormorant Garamond', Didot, Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(1.15rem, 0.85rem + 1.5vw, 1.65rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--savro-red);
+  margin-block-start: 0.55rem;
+}
+
+.rm-TriTag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #D4D4D8;
+  margin-block-start: 0.45rem;
+}
+
+/* Editorial Food Photo Banner */
+.rm-photo-showcase {
+  position: relative;
+  inline-size: 100%;
+  margin-block: 1.5rem 2.25rem;
+  border-radius: 14px;
+  overflow: clip;
+  border: 1.5px solid rgba(227, 6, 19, 0.55);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+  background: #050505;
+}
+
+.rm-photo-img {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* Category Section with Bold Crimson Ribbon Header */
+.rm-section {
+  margin-block-end: 2.6rem;
+}
+
+.rm-ribbon-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-block-end: 1.35rem;
+}
+
+.rm-ribbon {
+  position: relative;
+  display: inline-block;
+  background: var(--savro-red);
+  color: var(--savro-white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.05rem, 0.85rem + 1.2vw, 1.35rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding-block: 0.48rem;
+  padding-inline: 1.15rem 1.65rem;
+  clip-path: polygon(0 0, 100% 0, 95% 50%, 100% 100%, 0 100%);
+  box-shadow: 0 6px 18px rgba(227, 6, 19, 0.3);
+}
+
+.rm-section-tagline {
+  font-family: 'Cormorant Garamond', Didot, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.3rem);
+  color: #E4E4E7;
+  margin-block-start: 0.4rem;
+  letter-spacing: 0.03em;
+}
+
+/* Open Editorial Dish List (Zero boxy cards) */
+.rm-dish-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.rm-dish-item {
+  padding-block-end: 1.35rem;
+  border-block-end: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.rm-dish-item:last-child {
+  border-block-end: none;
+  padding-block-end: 0;
+}
+
+.rm-dish-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-block-end: 0.38rem;
+}
+
+.rm-dish-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.08rem, 0.95rem + 0.6vw, 1.28rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--savro-white);
 }
 
-.dish-badge {
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: rgba(227, 6, 19, 0.18);
-  border: 1px solid rgba(227, 6, 19, 0.65);
-  color: #ff858d;
-  padding-block: 0.22rem;
-  padding-inline: 0.6rem;
-  border-radius: 999px;
-}
-
-.dish-desc {
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--savro-silver);
-}
-
-.dish-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-block-start: 0.25rem;
-}
-
-.protein-box {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding-block: 0.75rem;
-  padding-inline: 0.9rem;
-}
-
-.protein-title {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--savro-red);
-  margin-block-end: 0.45rem;
-}
-
-.protein-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  list-style: none;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--savro-white);
-}
-
-.protein-list li::before {
-  content: "◆ ";
-  color: var(--savro-red);
-  font-size: 0.7rem;
-}
-
-.price-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.price-pill {
-  background: #1B1B22;
-  border: 1px solid rgba(227, 6, 19, 0.55);
-  border-radius: 8px;
-  padding-block: 0.38rem;
-  padding-inline: 0.75rem;
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--savro-white);
-  letter-spacing: 0.04em;
-}
-
-.price-pill strong {
-  color: var(--savro-red);
-  margin-inline-start: 0.2rem;
-}
-
-.addon-note {
-  display: inline-block;
-  align-self: flex-start;
-  background: var(--savro-red);
-  color: var(--savro-white);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding-block: 0.32rem;
-  padding-inline: 0.75rem;
-  border-radius: 6px;
-}
-
-.menu-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: safe center;
-  text-align: center;
-  gap: 0.6rem;
-  margin-block-start: 0.5rem;
-}
-
-.menu-motto {
+.rm-dish-callout {
   font-family: 'Cormorant Garamond', Didot, Georgia, serif;
-  font-size: clamp(1.2rem, 0.8rem + 2cqi, 1.75rem);
+  font-style: italic;
   font-weight: 700;
+  font-size: 1.12rem;
+  color: #FF4D58;
+}
+
+.rm-dish-desc {
+  font-size: clamp(0.92rem, 0.88rem + 0.25vw, 1.02rem);
+  line-height: 1.58;
+  color: #D4D4D8;
+  font-weight: 400;
+}
+
+/* Sub-options & Protein Callouts */
+.rm-choice-block {
+  margin-block-start: 0.75rem;
+  padding-inline-start: 0.85rem;
+  border-inline-start: 2.5px solid var(--savro-red);
+}
+
+.rm-choice-heading {
+  font-size: 0.76rem;
+  font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--savro-red);
+  margin-block-end: 0.35rem;
+}
+
+.rm-choice-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  list-style: none;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--savro-white);
+}
+
+.rm-choice-items li::before {
+  content: "• ";
+  color: var(--savro-red);
+  font-weight: 900;
+}
+
+.rm-extra-highlight {
+  display: inline-block;
+  margin-block-start: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FF4D58;
+}
+
+/* Classic Dotted Leader Price Rows (for Drinks & Portions) */
+.rm-price-leader-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-block-start: 0.7rem;
+  max-inline-size: 420px;
+}
+
+.rm-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.96rem;
+}
+
+.rm-price-size {
+  font-weight: 700;
+  color: var(--savro-white);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.rm-price-dots {
+  flex: 1;
+  border-block-end: 1px dotted rgba(255, 255, 255, 0.32);
+  margin-inline: 0.25rem;
+}
+
+.rm-price-val {
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: var(--savro-red);
+  white-space: nowrap;
+}
+
+/* Menu Footer */
+.rm-footer {
+  margin-block-start: 2.75rem;
+  padding-block-start: 1.75rem;
+  border-block-start: 2px solid var(--savro-red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.rm-footer-motto {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(0.95rem, 0.8rem + 1vw, 1.25rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--savro-white);
+}
+
+.rm-footer-loc {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--savro-silver);
+  letter-spacing: 0.05em;
 }
 
 .qr-preview-box {
