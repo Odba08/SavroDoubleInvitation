@@ -33,7 +33,7 @@ function SavroMenuPage() {
           <p className="rm-TriTag">Fresh &nbsp;•&nbsp; Loaded &nbsp;•&nbsp; Delicious</p>
         </header>
 
-        {/* Savory Hero Showcase */}
+        {/* Savory Hero Showcase (Descomentar si deseas mostrar la imagen)
         <figure className="rm-photo-showcase">
           <img
             src="/food-savory.jpg"
@@ -42,6 +42,7 @@ function SavroMenuPage() {
             loading="eager"
           />
         </figure>
+        */}
 
         {/* 1. LOADED HOT DOGS */}
         <section className="rm-section" aria-labelledby="sec-hotdogs">
@@ -123,7 +124,7 @@ function SavroMenuPage() {
           </div>
         </section>
 
-        {/* Sweet Treats & Drinks Showcase */}
+        {/* Sweet Treats & Drinks Showcase (Descomentar si deseas mostrar la imagen)
         <figure className="rm-photo-showcase">
           <img
             src="/food-sweet.jpg"
@@ -132,6 +133,7 @@ function SavroMenuPage() {
             loading="lazy"
           />
         </figure>
+        */}
 
         {/* 4. SWEET TREATS */}
         <section className="rm-section" aria-labelledby="sec-sweets">
