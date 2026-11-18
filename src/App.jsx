@@ -15,6 +15,294 @@ const GOOGLE_MAPS_URL =
   'https://www.google.com/maps/search/?api=1&query=NewBo+City+Market+1100+3rd+St+SE+Cedar+Rapids+IA+52401';
 
 /**
+ * SAVRO Official Digital Menu (/menu)
+ */
+function SavroMenuPage() {
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  const categories = [
+    { id: 'all', label: 'All Menu' },
+    { id: 'hotdogs', label: '🌭 Loaded Hot Dogs' },
+    { id: 'hoagie', label: '🥖 Pressed Hoagie' },
+    { id: 'corn', label: '🌽 Street Corn Cup' },
+    { id: 'sweets', label: '🍓 Sweet Treats' },
+    { id: 'drinks', label: '🥤 Refreshing Drinks' },
+  ];
+
+  const showSection = (id) => activeCategory === 'all' || activeCategory === id;
+
+  return (
+    <main className="menu-page">
+      <article className="menu-board" aria-label="SAVRO Street Food and Sweet Treats Menu">
+        <span className="corner-bracket tl" aria-hidden="true" />
+        <span className="corner-bracket tr" aria-hidden="true" />
+        <span className="corner-bracket bl" aria-hidden="true" />
+        <span className="corner-bracket br" aria-hidden="true" />
+
+        <div className="menu-content">
+          {/* Header */}
+          <header className="menu-header">
+            <p className="inv-overline">OFFICIAL MENU</p>
+            <img
+              src="/savro_logo_stacked_dark_bg.svg"
+              alt="SAVRO"
+              className="menu-logo"
+            />
+            <h1 className="menu-hero-title">STREET FOOD &amp; SWEET TREATS</h1>
+            <div className="menu-tagline-pill">
+              Fresh &nbsp;•&nbsp; Loaded &nbsp;•&nbsp; Delicious
+            </div>
+
+            {/* Category Filter Pills */}
+            <nav className="menu-filter-bar" aria-label="Menu Categories">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  className="menu-filter-btn"
+                  aria-pressed={activeCategory === cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </nav>
+          </header>
+
+          {/* 1. LOADED HOT DOGS */}
+          {showSection('hotdogs') && (
+            <section className="menu-section" aria-labelledby="sec-hotdogs">
+              <div className="menu-section-header">
+                <h2 id="sec-hotdogs" className="menu-section-title">
+                  <span aria-hidden="true">🌭</span> LOADED HOT DOGS
+                </h2>
+                <p className="menu-section-subtitle">Big flavors in every bite!</p>
+              </div>
+
+              <div className="dish-grid">
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">CLASSIC DOG</h3>
+                  </div>
+                  <p className="dish-desc">
+                    An all-beef or beef &amp; pork hot dog topped with sweet pickle relish, diced onions, ketchup, and yellow mustard.
+                  </p>
+                  <div className="dish-meta" />
+                </article>
+
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">CARAQUEÑO DOG</h3>
+                    <span className="dish-badge">Loaded with flavor!</span>
+                  </div>
+                  <p className="dish-desc">
+                    An all-beef or beef &amp; pork hot dog piled high with shredded cabbage and carrots, diced onions, sweet corn, crispy potato sticks, creamy tartar sauce, ketchup, and shredded cheddar cheese.
+                  </p>
+                  <div className="dish-meta" />
+                </article>
+
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">SALCHIQUESO DOG</h3>
+                    <span className="dish-badge">A cheese lover’s favorite!</span>
+                  </div>
+                  <p className="dish-desc">
+                    An all-beef or beef &amp; pork hot dog loaded with shredded cabbage and carrots, crispy potato sticks, creamy tartar sauce, ketchup, and soft, melty queso de mano cheese.
+                  </p>
+                  <div className="dish-meta" />
+                </article>
+              </div>
+            </section>
+          )}
+
+          {/* 2. LOADED PRESSED HOAGIE */}
+          {showSection('hoagie') && (
+            <section className="menu-section" aria-labelledby="sec-hoagie">
+              <div className="menu-section-header">
+                <h2 id="sec-hoagie" className="menu-section-title">
+                  <span aria-hidden="true">🥖</span> LOADED PRESSED HOAGIE
+                </h2>
+                <p className="menu-section-subtitle">Toasted, loaded &amp; pressed to perfection!</p>
+              </div>
+
+              <div className="dish-grid">
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">SIGNATURE PRESSED HOAGIE</h3>
+                    <span className="dish-badge">House Specialty</span>
+                  </div>
+                  <p className="dish-desc">
+                    A warm, pressed hoagie packed with your choice of protein, ham, cheese, fresh lettuce, tomatoes, and our signature sauces.
+                  </p>
+                  <div className="dish-meta">
+                    <div className="protein-box">
+                      <p className="protein-title">CHOOSE YOUR PROTEIN</p>
+                      <ul className="protein-list">
+                        <li>Shredded Beef</li>
+                        <li>Shredded Chicken</li>
+                        <li>Slow-Roasted Pork</li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          )}
+
+          {/* 3. LOADED STREET CORN CUP */}
+          {showSection('corn') && (
+            <section className="menu-section" aria-labelledby="sec-corn">
+              <div className="menu-section-header">
+                <h2 id="sec-corn" className="menu-section-title">
+                  <span aria-hidden="true">🌽</span> LOADED STREET CORN CUP
+                </h2>
+                <p className="menu-section-subtitle">Creamy, cheesy &amp; delicious!</p>
+              </div>
+
+              <div className="dish-grid">
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">STREET CORN CUP</h3>
+                  </div>
+                  <p className="dish-desc">
+                    Sweet corn kernels topped with Cotija cheese, creamy nata, and cheddar cheese.
+                  </p>
+                  <div className="dish-meta">
+                    <span className="addon-note">Add crispy bacon for extra!</span>
+                  </div>
+                </article>
+              </div>
+            </section>
+          )}
+
+          {/* 4. SWEET TREATS */}
+          {showSection('sweets') && (
+            <section className="menu-section" aria-labelledby="sec-sweets">
+              <div className="menu-section-header">
+                <h2 id="sec-sweets" className="menu-section-title">
+                  <span aria-hidden="true">🍓</span> SWEET TREATS
+                </h2>
+                <p className="menu-section-subtitle">Handcrafted indulgent desserts</p>
+              </div>
+
+              <div className="dish-grid">
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">STRAWBERRIES &amp; CREAM</h3>
+                  </div>
+                  <p className="dish-desc">
+                    Fresh, juicy strawberries covered in delicious sweet cream.
+                    <br />
+                    <strong style={{ color: '#fff' }}>Toppings:</strong> Nutella or sweetened condensed milk.
+                  </p>
+                  <div className="dish-meta">
+                    <span className="addon-note">Extra topping +$1</span>
+                  </div>
+                </article>
+
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">MINI PANCAKES</h3>
+                    <span className="dish-badge">Fluffy little bites of happiness!</span>
+                  </div>
+                  <p className="dish-desc">
+                    <strong style={{ color: '#fff' }}>10 Pieces</strong> — Includes 2 fruit choices + 2 toppings.
+                    <br />
+                    <strong style={{ color: '#fff' }}>20 Pieces</strong> — Includes 2 fruit choices + 2 toppings.
+                  </p>
+                  <div className="dish-meta">
+                    <div className="protein-box">
+                      <p className="protein-title">FRUIT CHOICES</p>
+                      <p className="dish-desc" style={{ color: '#fff', fontWeight: 600 }}>
+                        Strawberries, bananas, blueberries.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">GOLDEN WAFFLES</h3>
+                  </div>
+                  <p className="dish-desc">
+                    Freshly made golden waffles topped with your choice of 2 fruits and 2 delicious toppings.
+                  </p>
+                  <div className="dish-meta">
+                    <div className="protein-box">
+                      <p className="protein-title">FRUIT CHOICES</p>
+                      <p className="dish-desc" style={{ color: '#fff', fontWeight: 600 }}>
+                        Strawberries, bananas, blueberries.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          )}
+
+          {/* 5. REFRESHING DRINKS */}
+          {showSection('drinks') && (
+            <section className="menu-section" aria-labelledby="sec-drinks">
+              <div className="menu-section-header">
+                <h2 id="sec-drinks" className="menu-section-title">
+                  <span aria-hidden="true">🥤</span> REFRESHING DRINKS
+                </h2>
+                <p className="menu-section-subtitle">Traditional ice-cold favorites</p>
+              </div>
+
+              <div className="dish-grid">
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">CREAMY CHICHA</h3>
+                  </div>
+                  <p className="dish-desc">
+                    A sweet &amp; creamy rice-based drink.
+                  </p>
+                  <div className="dish-meta">
+                    <div className="price-pills" aria-label="Creamy Chicha sizes and prices">
+                      <span className="price-pill">9 oz — <strong>$7</strong></span>
+                      <span className="price-pill">16 oz — <strong>$10</strong></span>
+                      <span className="price-pill">32 oz — <strong>$15</strong></span>
+                    </div>
+                  </div>
+                </article>
+
+                <article className="dish-card">
+                  <div className="dish-head">
+                    <h3 className="dish-name">TROPICAL FRUIT TIZANA</h3>
+                  </div>
+                  <p className="dish-desc">
+                    A refreshing tropical fruit drink bursting with fruity flavors.
+                  </p>
+                  <div className="dish-meta">
+                    <div className="price-pills" aria-label="Tropical Fruit Tizana sizes and prices">
+                      <span className="price-pill">9 oz — <strong>$7</strong></span>
+                      <span className="price-pill">16 oz — <strong>$10</strong></span>
+                      <span className="price-pill">32 oz — <strong>$15</strong></span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          )}
+
+          {/* Footer */}
+          <footer className="menu-footer">
+            <div className="diamond-divider" aria-hidden="true">
+              <span className="diamond-dot" />
+            </div>
+            <p className="menu-motto">GOOD FOOD. GOOD MOOD. GREAT FLAVOR.</p>
+            <p className="inv-address">
+              NewBo City Market • 1100 3rd St SE, Cedar Rapids, IA 52401
+            </p>
+          </footer>
+        </div>
+      </article>
+    </main>
+  );
+}
+
+/**
  * Full-page Web Invitation Card Component (used both for Guests & Live Preview)
  */
 function InvitationCardView({ mode = 'opening18', guestName = '' }) {
@@ -146,11 +434,9 @@ function renderInvitationToCanvas(canvas, guestName, patternImage) {
     ctx.restore();
   };
 
-  // 1. Base Black
   ctx.fillStyle = '#000000';
   ctx.fillRect(0, 0, W, H);
 
-  // 2. Savro Swirl Pattern
   if (patternImage) {
     ctx.save();
     ctx.globalAlpha = 0.55;
@@ -162,7 +448,6 @@ function renderInvitationToCanvas(canvas, guestName, patternImage) {
     ctx.restore();
   }
 
-  // 3. Vignette & Glow
   const vignette = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, H * 0.54);
   vignette.addColorStop(0, 'rgba(5, 5, 5, 0.94)');
   vignette.addColorStop(0.6, 'rgba(5, 5, 5, 0.85)');
@@ -176,7 +461,6 @@ function renderInvitationToCanvas(canvas, guestName, patternImage) {
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, W, H);
 
-  // 4. Borders & Corner Brackets
   ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
   ctx.lineWidth = 1.5;
   ctx.strokeRect(48, 64, W - 96, H - 128);
@@ -218,7 +502,6 @@ function renderInvitationToCanvas(canvas, guestName, patternImage) {
 
   drawTracked('EXCLUSIVE INVITATION', W / 2, 155, '600 18px "Montserrat", sans-serif', '#E30613', 7);
 
-  // 5. Vector Logo
   ctx.save();
   const targetWidth = 345;
   const scale = targetWidth / 260;
@@ -259,7 +542,6 @@ function renderInvitationToCanvas(canvas, guestName, patternImage) {
 
   drawTracked('HOT DOGS   •   CHICHA   •   LOADED HOAGIES', W / 2, 1018, '700 19px "Montserrat", sans-serif', '#F8F8F8', 3.0);
 
-  // Date & Time Box
   ctx.save();
   ctx.beginPath();
   ctx.roundRect((W - 860) / 2, 1075, 860, 255, 20);
@@ -317,6 +599,7 @@ function StoreManagerPanel() {
     ? `${origin}/invite/${slugName}`
     : `${origin}/invite/Guest-Name`;
   const wednesdayPublicUrl = `${origin}/b`;
+  const menuPublicUrl = `${origin}/menu`;
 
   const validateGuestName = () => {
     if (!cleanName) {
@@ -392,6 +675,15 @@ function StoreManagerPanel() {
       setStatusMsg('¡Link público del Miércoles 18 copiado!');
     } catch {
       setStatusMsg(wednesdayPublicUrl);
+    }
+  };
+
+  const handleCopyMenuLink = async () => {
+    try {
+      await navigator.clipboard.writeText(menuPublicUrl);
+      setStatusMsg('¡Link del Menú (/menu) copiado!');
+    } catch {
+      setStatusMsg(menuPublicUrl);
     }
   };
 
@@ -494,6 +786,35 @@ function StoreManagerPanel() {
 
         <div className="divider-line" />
 
+        {/* QR Menu Section */}
+        <div className="qr-preview-box">
+          <span className="generated-link-label">
+            Menú Oficial Digital + Código QR (/menu):
+          </span>
+          <img
+            src="/Savro_Menu_QR_Card.png"
+            alt="SAVRO Menu QR Card"
+            className="qr-preview-img"
+          />
+          <a
+            href="/Savro_Menu_QR_Card.png"
+            download="Savro_Menu_QR_Card.png"
+            className="btn-action primary"
+            style={{ textDecoration: 'none' }}
+          >
+            Descargar Cartel QR del Menú (PNG)
+          </a>
+          <button
+            type="button"
+            className="btn-action secondary"
+            onClick={handleCopyMenuLink}
+          >
+            Copiar Link del Menú ({menuPublicUrl})
+          </button>
+        </div>
+
+        <div className="divider-line" />
+
         <div className="generated-link-box">
           <span className="generated-link-label">
             Ruta Pública Miércoles 18 Nov (10:00 AM):
@@ -542,21 +863,30 @@ export default function App() {
   const hash = typeof window !== 'undefined' ? window.location.hash : '';
   const params = new URLSearchParams(search);
 
+  const isMenuRoute =
+    /^\/(menu|carta|qr)\b/i.test(path) ||
+    hash.toLowerCase().includes('menu') ||
+    params.has('menu');
+
   const isAdminRoute =
-    /^\/(admin|encargado|manager|panel)\b/i.test(path) ||
-    hash.toLowerCase().includes('admin') ||
-    params.has('admin');
+    !isMenuRoute &&
+    (/^\/(admin|encargado|manager|panel)\b/i.test(path) ||
+      hash.toLowerCase().includes('admin') ||
+      params.has('admin'));
+
   const inviteMatch = path.match(/^\/(?:invite|vip|i|21|saturday)(?:\/(.*))?$/i);
   const queryGuest = params.get('guest') || params.get('name');
-  const isPersonalInvite = !isAdminRoute && Boolean(inviteMatch || queryGuest);
+  const isPersonalInvite = !isMenuRoute && !isAdminRoute && Boolean(inviteMatch || queryGuest);
 
-  const rawGuest = (inviteMatch && inviteMatch[1]) ? inviteMatch[1] : queryGuest;
+  const rawGuest = inviteMatch && inviteMatch[1] ? inviteMatch[1] : queryGuest;
   const decodedGuest = decodeURIComponent(rawGuest || '')
     .replace(/[-_]+/g, ' ')
     .trim();
 
   useEffect(() => {
-    if (isAdminRoute) {
+    if (isMenuRoute) {
+      document.title = 'SAVRO — Official Menu • Street Food & Sweet Treats';
+    } else if (isAdminRoute) {
       document.title = 'SAVRO — Store Manager Invitation Panel';
     } else if (isPersonalInvite) {
       document.title = decodedGuest
@@ -565,14 +895,19 @@ export default function App() {
     } else {
       document.title = 'SAVRO — Official Grand Opening Invitation';
     }
-  }, [isAdminRoute, isPersonalInvite, decodedGuest]);
+  }, [isMenuRoute, isAdminRoute, isPersonalInvite, decodedGuest]);
 
-  // 1. Private Store Manager Route (/admin, /encargado, /panel)
+  // 1. Official Digital Menu Route (/menu or /carta)
+  if (isMenuRoute) {
+    return <SavroMenuPage />;
+  }
+
+  // 2. Private Store Manager Route (/admin, /encargado, /panel)
   if (isAdminRoute) {
     return <StoreManagerPanel />;
   }
 
-  // 2. Personalized Saturday Nov 21 Guest Invitation Route (/invite/:guestName)
+  // 3. Personalized Saturday Nov 21 Guest Invitation Route (/invite/:guestName)
   if (isPersonalInvite) {
     return (
       <main className="invitation-page">
@@ -581,7 +916,7 @@ export default function App() {
     );
   }
 
-  // 3. Default Public Route (/ or /b or /18 or /opening): Wednesday, November 18 at 10:00 AM
+  // 4. Default Public Route (/ or /b or /18 or /opening): Wednesday, November 18 at 10:00 AM
   return (
     <main className="invitation-page">
       <InvitationCardView mode="opening18" />

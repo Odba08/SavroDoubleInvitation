@@ -7,6 +7,7 @@ const indexHtmlPath = path.join(distDir, 'index.html');
 if (fs.existsSync(indexHtmlPath)) {
   const indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
 
+  // 1. Generate vip.html for Saturday Nov 21 Grand Opening Event & Manager Panel
   const vipHtml = indexHtml
     .replace(
       /SAVRO — Grand Opening \(Wednesday, Nov 18 • 10:00 AM\)/g,
@@ -19,5 +20,19 @@ if (fs.existsSync(indexHtmlPath)) {
     .replace(/\/og-opening-18\.jpg/g, '/og-vip-21.jpg');
 
   fs.writeFileSync(path.join(distDir, 'vip.html'), vipHtml, 'utf8');
-  console.log('Generated dist/vip.html with Saturday Nov 21 Open Graph tags.');
+
+  // 2. Generate menu.html for /menu & /qr routes
+  const menuHtml = indexHtml
+    .replace(
+      /SAVRO — Grand Opening \(Wednesday, Nov 18 • 10:00 AM\)/g,
+      'SAVRO — Official Menu • Street Food & Sweet Treats'
+    )
+    .replace(
+      /Wednesday, November 18, 2026 at 10:00 AM • Hot Dogs • Chicha • Loaded Hoagies/g,
+      'Fresh • Loaded • Delicious — Loaded Hot Dogs, Pressed Hoagies, Street Corn Cup, Sweet Treats & Creamy Chicha'
+    )
+    .replace(/\/og-opening-18\.jpg/g, '/og-menu.jpg');
+
+  fs.writeFileSync(path.join(distDir, 'menu.html'), menuHtml, 'utf8');
+  console.log('Generated dist/vip.html and dist/menu.html with dedicated Open Graph tags.');
 }

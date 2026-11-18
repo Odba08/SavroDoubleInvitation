@@ -1,6 +1,22 @@
 {
   "rewrites": [
     {
+      "source": "/menu",
+      "destination": "/menu.html"
+    },
+    {
+      "source": "/menu/:path*",
+      "destination": "/menu.html"
+    },
+    {
+      "source": "/carta",
+      "destination": "/menu.html"
+    },
+    {
+      "source": "/qr",
+      "destination": "/menu.html"
+    },
+    {
       "source": "/admin",
       "destination": "/vip.html"
     },
