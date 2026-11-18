@@ -502,25 +502,33 @@ function renderInvitationToCanvas(canvas, guestName, patternImage) {
 
   drawTracked('HOT DOGS   •   CHICHA   •   LOADED HOAGIES', W / 2, 1018, '700 19px "Montserrat", sans-serif', '#F8F8F8', 3.0);
 
-  ctx.save();
-  ctx.beginPath();
-  ctx.roundRect((W - 860) / 2, 1075, 860, 255, 20);
-  ctx.fillStyle = 'rgba(20, 20, 23, 0.92)';
-  ctx.fill();
-  ctx.strokeStyle = '#E30613';
-  ctx.lineWidth = 2.2;
-  ctx.stroke();
-  ctx.restore();
+  const drawRoundedBox = (x, y, w, h, r, fill, stroke, lineWidth = 2) => {
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+    if (fill) {
+      ctx.fillStyle = fill;
+      ctx.fill();
+    }
+    if (stroke) {
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = lineWidth;
+      ctx.stroke();
+    }
+    ctx.restore();
+  };
+
+  drawRoundedBox((W - 860) / 2, 1075, 860, 255, 20, 'rgba(20, 20, 23, 0.92)', '#E30613', 2.2);
 
   drawTracked('SATURDAY', W / 2, 1130, '700 20px "Montserrat", sans-serif', '#E30613', 8);
   drawTracked('NOVEMBER 21, 2026', W / 2, 1194, '800 44px "Montserrat", sans-serif', '#FFFFFF', 3.5);
 
-  ctx.save();
-  ctx.beginPath();
-  ctx.roundRect((W - 300) / 2, 1242, 300, 54, 27);
-  ctx.fillStyle = '#E30613';
-  ctx.fill();
-  ctx.restore();
+  drawRoundedBox((W - 300) / 2, 1242, 300, 54, 27, '#E30613', null);
 
   drawTracked('AT 3:00 PM', W / 2, 1270, '900 26px "Montserrat", sans-serif', '#FFFFFF', 4.5);
 
@@ -530,6 +538,20 @@ function renderInvitationToCanvas(canvas, guestName, patternImage) {
   drawTracked('WE LOOK FORWARD TO CELEBRATING WITH YOU', W / 2, 1765, '400 17px "Montserrat", sans-serif', 'rgba(199, 199, 204, 0.85)', 5);
 }
 
+function dataUrlToBlobAndFile(dataUrl, filename) {
+  const parts = dataUrl.split(',');
+  const byteString = atob(parts[1]);
+  const mimeString = parts[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  const blob = new Blob([ab], { type: mimeString });
+  const file = new File([blob], filename, { type: mimeString });
+  return { blob, file };
+}
+
 /**
  * Private Store Manager Panel (/admin)
  */
@@ -537,6 +559,7 @@ function StoreManagerPanel() {
   const [guestName, setGuestName] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
+  const [photoModal, setPhotoModal] = useState(null);
   const inputRef = useRef(null);
   const canvasRef = useRef(null);
   const patternImgRef = useRef(null);
@@ -574,7 +597,7 @@ function StoreManagerPanel() {
     return true;
   };
 
-  const handleDownloadPhoto = (e) => {
+  const handleDownloadPhoto = async (e) => {
     e.preventDefault();
     if (!validateGuestName()) return;
 
@@ -585,14 +608,63 @@ function StoreManagerPanel() {
     const safeFile = cleanName.replace(/[^a-zA-Z0-9_-]+/g, '_');
     const filename = `Savro_Invitation_${safeFile}.png`;
     const dataUrl = canvas.toDataURL('image/png');
+    const { blob, file } = dataUrlToBlobAndFile(dataUrl, filename);
+
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    // Always show the high-res image modal on iOS (works in Safari AND inside WhatsApp in-app browser)
+    setPhotoModal({ dataUrl, filename, file, blob, guest: cleanName });
+
+    // On iOS, immediately invoke native Share Sheet (which has "Save Image" to Photos + WhatsApp)
+    if (isIOS && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: `SAVRO Invitation — ${cleanName}`,
+        });
+        setStatusMsg(`¡Listo! Imagen compartida o guardada para ${cleanName}.`);
+        return;
+      } catch {
+        // User closed share sheet; modal remains open so they can long-press or tap Save
+        return;
+      }
+    }
+
+    // Standard Blob download for Android & Desktop
+    const blobUrl = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.download = filename;
-    link.href = dataUrl;
+    link.href = blobUrl;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
 
-    setStatusMsg(`Foto descargada: ${filename}`);
+    setStatusMsg(`Foto lista: ${filename}`);
+  };
+
+  const handleSharePhotoFileFromModal = async () => {
+    if (!photoModal) return;
+    const { file, blob, filename } = photoModal;
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: filename,
+        });
+        return;
+      } catch {}
+    }
+    const blobUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = blobUrl;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
   };
 
   const handleSharePersonalizedLink = async () => {
@@ -644,6 +716,50 @@ function StoreManagerPanel() {
       setStatusMsg('¡Link del Menú (/menu) copiado!');
     } catch {
       setStatusMsg(menuPublicUrl);
+    }
+  };
+
+  const handleDownloadQrCard = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('/Savro_Menu_QR_Card.png');
+      const blob = await res.blob();
+      const filename = 'Savro_Menu_QR_Card.png';
+      const file = new File([blob], filename, { type: 'image/png' });
+      const blobUrl = URL.createObjectURL(blob);
+
+      setPhotoModal({
+        dataUrl: blobUrl,
+        filename,
+        file,
+        blob,
+        guest: 'Menú QR',
+      });
+
+      const isIOS =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+      if (isIOS && navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: 'SAVRO Official Menu QR Card',
+          });
+          return;
+        } catch {
+          return;
+        }
+      }
+
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = blobUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      window.open('/Savro_Menu_QR_Card.png', '_blank');
     }
   };
 
@@ -756,14 +872,13 @@ function StoreManagerPanel() {
             alt="SAVRO Menu QR Card"
             className="qr-preview-img"
           />
-          <a
-            href="/Savro_Menu_QR_Card.png"
-            download="Savro_Menu_QR_Card.png"
+          <button
+            type="button"
             className="btn-action primary"
-            style={{ textDecoration: 'none' }}
+            onClick={handleDownloadQrCard}
           >
             Descargar Cartel QR del Menú (PNG)
-          </a>
+          </button>
           <button
             type="button"
             className="btn-action secondary"
@@ -813,6 +928,45 @@ function StoreManagerPanel() {
       <section aria-label="Vista previa en vivo de la invitación">
         <InvitationCardView mode="vip21" guestName={cleanName} />
       </section>
+
+      {photoModal && (
+        <div
+          className="photo-modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Guardar foto de invitación"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setPhotoModal(null);
+          }}
+        >
+          <div className="photo-modal-card">
+            <p className="photo-modal-hint">
+              📱 <strong>En iPhone:</strong> Mantén presionada la imagen 1 segundo y toca <strong>“Guardar en Fotos”</strong> (o usa el botón rojo de abajo para enviarla directo por WhatsApp / Guardar imagen).
+            </p>
+            <img
+              src={photoModal.dataUrl}
+              alt={`Invitación SAVRO para ${photoModal.guest}`}
+              className="photo-modal-img"
+            />
+            <div className="photo-modal-actions">
+              <button
+                type="button"
+                className="btn-action primary"
+                onClick={handleSharePhotoFileFromModal}
+              >
+                Guardar en Fotos / Enviar por WhatsApp
+              </button>
+              <button
+                type="button"
+                className="btn-action secondary"
+                onClick={() => setPhotoModal(null)}
+              >
+                Cerrar vista previa
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
