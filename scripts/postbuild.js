@@ -29,7 +29,7 @@ if (fs.existsSync(indexHtmlPath)) {
     )
     .replace(
       /Wednesday, November 18, 2026 at 10:00 AM • Hot Dogs • Chicha • Loaded Hoagies/g,
-      'Fresh • Loaded • Delicious — Loaded Hot Dogs, Pressed Hoagies, Street Corn Cup, Sweet Treats & Creamy Chicha'
+      'Fresh • Loaded • Delicious — Loaded Hot Dogs, Street Corn Cup, Sweet Treats & Creamy Chicha'
     )
     .replace(/\/og-opening-18\.jpg/g, '/og-menu.jpg');
 

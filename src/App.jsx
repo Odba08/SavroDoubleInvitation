@@ -83,31 +83,7 @@ function SavroMenuPage() {
           </div>
         </section>
 
-        {/* 2. LOADED PRESSED HOAGIE */}
-        <section className="rm-section" aria-labelledby="sec-hoagie">
-          <div className="rm-ribbon-wrap">
-            <h2 id="sec-hoagie" className="rm-ribbon">LOADED PRESSED HOAGIE</h2>
-            <p className="rm-section-tagline">Toasted, loaded &amp; pressed to perfection!</p>
-          </div>
-
-          <div className="rm-dish-list">
-            <div className="rm-dish-item">
-              <p className="rm-dish-desc">
-                A warm, pressed hoagie packed with your choice of protein, ham, cheese, fresh lettuce, tomatoes, and our signature sauces.
-              </p>
-              <div className="rm-choice-block">
-                <p className="rm-choice-heading">CHOOSE YOUR PROTEIN</p>
-                <ul className="rm-choice-items">
-                  <li>Shredded Beef</li>
-                  <li>Shredded Chicken</li>
-                  <li>Slow-Roasted Pork</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3. LOADED STREET CORN CUP */}
+        {/* 2. LOADED STREET CORN CUP */}
         <section className="rm-section" aria-labelledby="sec-corn">
           <div className="rm-ribbon-wrap">
             <h2 id="sec-corn" className="rm-ribbon">LOADED STREET CORN CUP</h2>
@@ -135,7 +111,7 @@ function SavroMenuPage() {
         </figure>
         */}
 
-        {/* 4. SWEET TREATS */}
+        {/* 3. SWEET TREATS */}
         <section className="rm-section" aria-labelledby="sec-sweets">
           <div className="rm-ribbon-wrap">
             <h2 id="sec-sweets" className="rm-ribbon">SWEET TREATS</h2>
@@ -189,7 +165,7 @@ function SavroMenuPage() {
           </div>
         </section>
 
-        {/* 5. REFRESHING DRINKS */}
+        {/* 4. REFRESHING DRINKS */}
         <section className="rm-section" aria-labelledby="sec-drinks">
           <div className="rm-ribbon-wrap">
             <h2 id="sec-drinks" className="rm-ribbon">REFRESHING DRINKS</h2>

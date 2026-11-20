@@ -942,4 +942,155 @@ input[type="text"]:user-invalid {
   gap: 0.6rem;
 }
 
+/* ============================================================================
+   LARGE-FORMAT ROLL-UP BANNER PRINT LAYOUT (57.7cm × 210.8cm)
+   ============================================================================ */
+@page {
+  size: 57.7cm 210.8cm;
+  margin: 0;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html {
+    width: 57.7cm !important;
+    height: 210.8cm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background-color: #050506 !important;
+  }
+
+  body {
+    width: 577px !important;
+    height: 2108px !important;
+    min-height: 2108px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background-color: #050506 !important;
+    transform: scale(3.7795275591) !important;
+    transform-origin: top left !important;
+  }
+
+  .real-menu-wrapper {
+    width: 577px !important;
+    height: 2108px !important;
+    min-block-size: 2108px !important;
+    max-block-size: 2108px !important;
+    padding: 20px 18px !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    background-color: #050506 !important;
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(227, 6, 19, 0.18) 0%, rgba(5, 5, 6, 0.92) 45%, #040405 100%),
+      url('/pattern_page_6.png') !important;
+    background-size: 100% 100%, 460px auto !important;
+  }
+
+  .real-menu-sheet {
+    inline-size: 100% !important;
+    max-inline-size: 100% !important;
+    block-size: 100% !important;
+    border-radius: 16px !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+    outline: 2.5px solid rgba(227, 6, 19, 0.78) !important;
+    outline-offset: -10px !important;
+    padding: 38px 34px 38px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background: rgba(6, 6, 8, 0.92) !important;
+  }
+
+  .rm-masthead {
+    padding-block-end: 24px !important;
+    margin-block-end: 8px !important;
+  }
+
+  .rm-logo {
+    inline-size: 195px !important;
+    margin-block-end: 10px !important;
+  }
+
+  .rm-MainTitle {
+    font-size: 56px !important;
+  }
+
+  .rm-SubTitle {
+    font-size: 22px !important;
+    margin-block-start: 8px !important;
+  }
+
+  .rm-TriTag {
+    font-size: 12.5px !important;
+    margin-block-start: 7px !important;
+  }
+
+  .rm-section {
+    margin-block-end: 0 !important;
+  }
+
+  .rm-ribbon-wrap {
+    margin-block-end: 16px !important;
+  }
+
+  .rm-ribbon {
+    font-size: 19px !important;
+    padding-block: 7px !important;
+    padding-inline: 18px 26px !important;
+  }
+
+  .rm-section-tagline {
+    font-size: 18.5px !important;
+    margin-block-start: 5px !important;
+  }
+
+  .rm-dish-list {
+    gap: 18px !important;
+  }
+
+  .rm-dish-item {
+    padding-block-end: 16px !important;
+  }
+
+  .rm-dish-item:last-child {
+    padding-block-end: 0 !important;
+  }
+
+  .rm-dish-name {
+    font-size: 18.5px !important;
+  }
+
+  .rm-dish-callout {
+    font-size: 17.5px !important;
+  }
+
+  .rm-dish-desc {
+    font-size: 15px !important;
+    line-height: 1.54 !important;
+  }
+
+  .rm-footer {
+    margin-block-start: 8px !important;
+    padding-block-start: 22px !important;
+  }
+
+  .rm-footer-motto {
+    font-size: 16.5px !important;
+    letter-spacing: 0.14em !important;
+    white-space: nowrap !important;
+  }
+
+  .rm-footer-loc {
+    font-size: 13.5px !important;
+  }
+}
+
+
 
